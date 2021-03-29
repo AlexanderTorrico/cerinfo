@@ -29,6 +29,7 @@ Route::post('/register', [AuthController::class, "register"]);
 Route::get('language', [LanguageController::class,'index']);
 Route::get('language/{id}', [LanguageController::class,'show']);
 Route::post('language', [LanguageController::class,'store']);
+Route::put('language/{id}', [LanguageController::class,'update']);
 Route::delete('language/{language}', [LanguageController::class,'destroy']);
 
 Route::get('area', [AreaController::class,'index']);
