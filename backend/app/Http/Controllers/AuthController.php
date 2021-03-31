@@ -10,17 +10,17 @@ class AuthController extends Controller
 {
     public function registerAdministrator(Request $request)
     {
-        $user = User::create([
-            "name" => $request->json('name'),
-            "email" => $request->json('email'),
-            "password" => bcrypt($request->json('password')
-            ),
-        ]);
-        $user->assignRole('Administrator');
+        $objUser = new User();
+        $objUser->name = $request->get('name');
+        $objUser->email = $request->get('email');
+        $objUser->password = bcrypt($request->get('password'));
+        $objUser->save();
+        $objUser->assignRole('Administrator');
         return response()->json([
             "res" => "success",
-            "data" => $user
+            "data" => $objUser
         ]);
+
     }
     public function registerAssistant(Request $request)
     {

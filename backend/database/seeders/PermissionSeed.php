@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -15,10 +16,21 @@ class PermissionSeed extends Seeder
      */
     public function run()
     {
+
         $roleAdministrator = Role::create(['name'=>'Administrator']);
         $roleMaster = Role::create(['name'=>'Master']);
         $roleAssistant = Role::create(['name'=>'Assistant']);
         $roleStudent = Role::create(['name'=>'Student']);
+
+        //Usuario -> Administrador
+
+        $Admin = User::create([
+            'name' => 'admin',
+            'email' =>'admin@gmail.com',
+            'password'=>bcrypt('123456789'),
+
+        ]);
+        $Admin->assignRole($roleAdministrator);
 
          //PERMISOS DE GENERO Y MATERIAL
 
