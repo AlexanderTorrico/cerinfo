@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Gender;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class GenderController extends Controller
 {
@@ -14,7 +16,7 @@ class GenderController extends Controller
      */
     public function index()
     {
-        //
+        return Gender::all();
     }
 
     /**
@@ -35,7 +37,11 @@ class GenderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $obj = Gender::create([
+            'name' => $request->name
+
+        ]);
+        return response()->json($obj, 201);
     }
 
     /**
@@ -44,9 +50,9 @@ class GenderController extends Controller
      * @param  \App\Models\Gender  $gender
      * @return \Illuminate\Http\Response
      */
-    public function show(Gender $gender)
+    public function show($id)
     {
-        //
+        return  Gender::find($id);
     }
 
     /**
@@ -65,11 +71,14 @@ class GenderController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Gender  $gender
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Gender $gender)
+    public function update(Request $request, $id)
     {
-        //
+
+        $gender = Gender::findOrFail($id);
+        $gender->update($request->all());
+        return $gender;
     }
 
     /**
@@ -78,8 +87,16 @@ class GenderController extends Controller
      * @param  \App\Models\Gender  $gender
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gender $gender)
+    public function destroy($id)
     {
-        //
+        try {
+            $gender = Gender::find($id);
+            $gender->delete();
+            $info = ['nombre' => 'Rafael'];
+            return response()->json($info,204);
+        } catch (\Exception $e) {
+            $info = ['estado' => 'error'];
+            return response()->json($info,501);
+        }
     }
 }

@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function registerAdministrator(Request $request)
     {
         $user = User::create([
             "name" => $request->json('name'),
@@ -15,6 +16,51 @@ class AuthController extends Controller
             "password" => bcrypt($request->json('password')
             ),
         ]);
+        $user->assignRole('Administrator');
+        return response()->json([
+            "res" => "success",
+            "data" => $user
+        ]);
+    }
+    public function registerAssistant(Request $request)
+    {
+        $user = User::create([
+            "name" => $request->json('name'),
+            "email" => $request->json('email'),
+            "password" => bcrypt($request->json('password')
+            ),
+        ]);
+        $user->assignRole('Assistant');
+        return response()->json([
+            "res" => "success",
+            "data" => $user
+        ]);
+    }
+
+    public function registerMaster(Request $request)
+    {
+        $user = User::create([
+            "name" => $request->json('name'),
+            "email" => $request->json('email'),
+            "password" => bcrypt($request->json('password')
+            ),
+        ]);
+        $user->assignRole('Master');
+        return response()->json([
+            "res" => "success",
+            "data" => $user
+        ]);
+    }
+
+    public function registerStudent(Request $request)
+    {
+        $user = User::create([
+            "name" => $request->json('name'),
+            "email" => $request->json('email'),
+            "password" => bcrypt($request->json('password')
+            ),
+        ]);
+        $user->assignRole('Student');
         return response()->json([
             "res" => "success",
             "data" => $user
