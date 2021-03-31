@@ -24,46 +24,43 @@ class AuthController extends Controller
     }
     public function registerAssistant(Request $request)
     {
-        $user = User::create([
-            "name" => $request->json('name'),
-            "email" => $request->json('email'),
-            "password" => bcrypt($request->json('password')
-            ),
-        ]);
-        $user->assignRole('Assistant');
+        $objUser = new User();
+        $objUser->name = $request->get('name');
+        $objUser->email = $request->get('email');
+        $objUser->password = bcrypt($request->get('password'));
+        $objUser->save();
+        $objUser->assignRole('Assistant');
         return response()->json([
             "res" => "success",
-            "data" => $user
+            "data" => $objUser
         ]);
     }
 
     public function registerMaster(Request $request)
     {
-        $user = User::create([
-            "name" => $request->json('name'),
-            "email" => $request->json('email'),
-            "password" => bcrypt($request->json('password')
-            ),
-        ]);
-        $user->assignRole('Master');
+        $objUser = new User();
+        $objUser->name = $request->get('name');
+        $objUser->email = $request->get('email');
+        $objUser->password = bcrypt($request->get('password'));
+        $objUser->save();
+        $objUser->assignRole('Master');
         return response()->json([
             "res" => "success",
-            "data" => $user
+            "data" => $objUser
         ]);
     }
 
     public function registerStudent(Request $request)
     {
-        $user = User::create([
-            "name" => $request->json('name'),
-            "email" => $request->json('email'),
-            "password" => bcrypt($request->json('password')
-            ),
-        ]);
-        $user->assignRole('Student');
+        $objUser = new User();
+        $objUser->name = $request->get('name');
+        $objUser->email = $request->get('email');
+        $objUser->password = bcrypt($request->get('password'));
+        $objUser->save();
+        $objUser->assignRole('Student');
         return response()->json([
             "res" => "success",
-            "data" => $user
+            "data" => $objUser
         ]);
     }
 
