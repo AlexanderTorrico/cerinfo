@@ -86,7 +86,7 @@ class LanguagePage extends Component {
                 <h1>Lenguajes</h1>
                 <Center>
                 <SimpleGrid columns={2} spacingX="30px" >
-                    <Box shadow="md" width="600px" borderWidth="1px">
+                    <Box shadow="md" width="600px" borderWidth="1px" borderRadius="lg" className="classBox">
                         <InputGroup>
                             <Input
                             ref={this.searchInput}
@@ -154,7 +154,7 @@ class LanguagePage extends Component {
                         }
                     </Box>
 
-                    <Box shadow="md" width="600px" borderWidth="1px">
+                    <Box shadow="md" width="600px" borderWidth="1px" borderRadius="lg" className="classBox">
                         <Button colorScheme="twitter" isRound={true} onClick={() => { this.drawerProps('add', null) }}>Agregar lenguaje</Button>
                         <Table variant="striped" colorScheme="twitter" size="lg" spacing="40px">
                             <Thead>
@@ -207,7 +207,7 @@ class LanguagePage extends Component {
                 </Center>
 
                 <Drawer isOpen={this.state.drawerMode !== 'closed'}>
-                    <LanguageDrawer {...this.state} openCloseDrawer={this.drawerProps} languagesUrl={languagesUrl} />
+                    <LanguageDrawer {...this.state} drawerProps={this.drawerProps} languagesUrl={languagesUrl} />
                 </Drawer>
             </React.Fragment>
         )
