@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Center } from "@chakra-ui/react";
 import "./../../Assets/Css/Estilo.css";
 import SideBar from '../SideBar/SideBar';
 import Nav from '../SideBar/Nav';
@@ -13,26 +13,16 @@ class Container extends Component {
 
         return (
             <React.Fragment>
-                <Box className="este" h="inherit">
-                    <Box>
-                        <SideBar></SideBar>
-                    </Box>
-                    <Box h="full">
-                        <Nav></Nav>
-                        <Box className="Main">
-                            <LanguagePage />
-                        </Box>
-                    </Box>
-                </Box>
-                <Flex className="este">
-                    <SideBar />
-                    <Box className="content" w="full" h="full">
-                        <Nav />
-                        <Box className="Main" bg="lightblue">
 
+                    <Flex className="este">
+                            <SideBar></SideBar>
+                        <Box className="content" w="full" h="full">
+                            <Nav></Nav>
+                            <Box className="Main" bg="#E4EFE9" h="full">
+                                <LanguagePage />
+                            </Box>
                         </Box>
-                    </Box>
-                </Flex>
+                    </Flex>
             </React.Fragment>
         );
     }

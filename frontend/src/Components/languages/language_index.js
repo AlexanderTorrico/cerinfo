@@ -4,7 +4,7 @@ import './language.css'
 import LanguageDrawer from './language_drawer.js'
 import { FaCheck, FaTimes, FaPencilAlt, FaTrashAlt, FaSistrix } from "react-icons/fa";
 import {
-    Center, Button, IconButton, Spacer, Flex, Input, InputRightElement, InputGroup, SimpleGrid, Drawer, Divider, Box,
+    Text, Button, IconButton, Spacer, Flex, Input, InputRightElement, Container, SimpleGrid, Drawer, Divider, Box,
     Table, Thead, Tbody, Th, Tr, Td,
     Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverFooter, PopoverArrow, PopoverCloseButton,
 } from '@chakra-ui/react'
@@ -58,7 +58,7 @@ class LanguagePage extends Component {
 
     drawerProps = (type, data) => {
         this.setState({ drawerMode: type, langSelected: data, popoverSeeker: false, popoverList: false })
-        type==='closed'&& this.peticionGet();
+        type === 'closed' && this.peticionGet();
     }
 
     /*openCloseDrawer = (data, obj) => {
@@ -83,79 +83,13 @@ class LanguagePage extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1>Lenguajes</h1>
-                <Center>
-                <SimpleGrid columns={2} spacingX="30px" >
-                    <Box shadow="md" width="600px" borderWidth="1px" borderRadius="lg" className="classBox">
-                        <InputGroup>
-                            <Input
-                            ref={this.searchInput}
-                            id="search" name="search"
-                            />
-                            <InputRightElement>
-                                <IconButton
-                                    colorScheme="twitter"
-                                    icon={<FaSistrix />}
-                                    onClick={() => { this.setState({ search: this.searchInput.current.value }) }}
-                                />
-                            </InputRightElement>
-                        </InputGroup>
+                <Box bg="white" p="15px">
+                    <Text fontSize="4x1">Configuraciones de lenguaje</Text>
+                </Box>
 
-                        {
-                            this.state.search === "" ? <React.Fragment><br/><h1>Buscar lenguaje</h1></React.Fragment> :
-                                <Table variant="striped" colorScheme="twitter" size="lg">
-                                    <Thead>
-                                        <Tr>
-                                            <Th>#</Th>
-                                            <Th>Nombre</Th>
-                                            <Th>Sigla</Th>
-                                            <Th>{"     "}</Th>
-                                        </Tr>
-                                    </Thead>
-                                    <Tbody>
-                                        {
-                                            this.state.languages.map((lang, index) => {
-                                                if (lang.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(this.state.search.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")) || lang.abbreviation.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(this.state.search.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")))
-                                                    return (
-                                                        <Tr key={index+1}>
-                                                            <Td className="tede">{index+1}</Td>
-                                                            <Td className="tede">{lang.name}</Td>
-                                                            <Td className="tede">{lang.abbreviation}</Td>
-                                                            <Td className="tede">
-                                                                <SimpleGrid columns={2} spacing="10">
-                                                                    <IconButton colorScheme="twitter" onClick={() => { this.drawerProps('edit', lang) }} isRound={true} icon={<FaPencilAlt />} />
-                                                                    <Popover placement="right-end" autoFocus={true} isOpen={this.state.popoverSeeker === lang.id}>
-                                                                            <PopoverTrigger>
-                                                                                <IconButton onClick={() => { this.setState({ popoverSeeker: lang.id }) }} isRound={true} icon={<FaTrashAlt />} />
-                                                                            </PopoverTrigger>
-                                                                            <PopoverContent>
-                                                                                <PopoverArrow />
-                                                                                <PopoverHeader>{"¿Esta seguro de eliminar el idioma " + lang.name + "?"}</PopoverHeader>
-                                                                                <PopoverBody>
-                                                                                    <Flex direction="row" >
-                                                                                        <Spacer />
-                                                                                        <SimpleGrid columns={2} spacing="25px">
-                                                                                            <IconButton colorScheme="twitter" icon={<FaCheck />} onClick={() => { this.peticionDelete(lang.id) }} />
-                                                                                            <IconButton colorScheme="twitter" variant="outline" onClick={() => { this.setState({ popoverSeeker: false }) }} icon={<FaTimes />} />
-                                                                                        </SimpleGrid>
-                                                                                        <Spacer />
-                                                                                    </Flex>
-                                                                                </PopoverBody>
-                                                                            </PopoverContent>
-                                                                    </Popover>
-                                                                </SimpleGrid>
-                                                            </Td>
-                                                        </Tr>
-                                                    )
-                                            })
-                                        }
-                                    </Tbody>
-                                </Table>
-                        }
-                    </Box>
-
-                    <Box shadow="md" width="600px" borderWidth="1px" borderRadius="lg" className="classBox">
-                        <Button colorScheme="twitter" isRound={true} onClick={() => { this.drawerProps('add', null) }}>Agregar lenguaje</Button>
+                <SimpleGrid justifyContent="center" >
+                    <Box shadow="md" width="100%" borderWidth="1px" borderRadius="lg" className="mainBox" bg="white">
+                        <Button colorScheme="twitter" isRound={true} position="right" onClick={() => { this.drawerProps('add', null) }}>Agregar lenguaje</Button>
                         <Table variant="striped" colorScheme="twitter" size="lg" spacing="40px">
                             <Thead>
                                 <Tr>
@@ -176,23 +110,23 @@ class LanguagePage extends Component {
                                                 <SimpleGrid columns={2} spacing="10">
                                                     <IconButton colorScheme="twitter" onClick={() => { this.drawerProps('edit', lang) }} isRound={true} icon={<FaPencilAlt />} />
                                                     <Popover placement="right-end" autoFocus={true} isOpen={this.state.popoverList === lang.id}>
-                                                            <PopoverTrigger>
-                                                                <IconButton onClick={() => { this.setState({ popoverList: lang.id }) }} isRound={true} icon={<FaTrashAlt />} />
-                                                            </PopoverTrigger>
-                                                            <PopoverContent>
-                                                                <PopoverArrow />
-                                                                <PopoverHeader>{"¿Esta seguro de eliminar el idioma " + lang.name + "?"}</PopoverHeader>
-                                                                <PopoverBody>
-                                                                    <Flex direction="row" >
-                                                                        <Spacer />
-                                                                        <SimpleGrid columns={2} spacing="25px">
-                                                                            <IconButton colorScheme="twitter" icon={<FaCheck />} onClick={() => { this.peticionDelete(lang.id) }} />
-                                                                            <IconButton colorScheme="twitter" variant="outline" onClick={() => { this.setState({ popoverList: false }) }} icon={<FaTimes />} />
-                                                                        </SimpleGrid>
-                                                                        <Spacer />
-                                                                    </Flex>
-                                                                </PopoverBody>
-                                                            </PopoverContent>
+                                                        <PopoverTrigger>
+                                                            <IconButton onClick={() => { this.setState({ popoverList: lang.id }) }} isRound={true} icon={<FaTrashAlt />} />
+                                                        </PopoverTrigger>
+                                                        <PopoverContent>
+                                                            <PopoverArrow />
+                                                            <PopoverHeader>{"¿Esta seguro de eliminar el idioma " + lang.name + "?"}</PopoverHeader>
+                                                            <PopoverBody>
+                                                                <Flex direction="row" >
+                                                                    <Spacer />
+                                                                    <SimpleGrid columns={2} spacing="25px">
+                                                                        <IconButton colorScheme="twitter" icon={<FaCheck />} onClick={() => { this.peticionDelete(lang.id) }} />
+                                                                        <IconButton colorScheme="twitter" variant="outline" onClick={() => { this.setState({ popoverList: false }) }} icon={<FaTimes />} />
+                                                                    </SimpleGrid>
+                                                                    <Spacer />
+                                                                </Flex>
+                                                            </PopoverBody>
+                                                        </PopoverContent>
                                                     </Popover>
                                                 </SimpleGrid>
                                             </Td>
@@ -204,7 +138,7 @@ class LanguagePage extends Component {
                         </Table>
                     </Box>
                 </SimpleGrid>
-                </Center>
+
 
                 <Drawer isOpen={this.state.drawerMode !== 'closed'}>
                     <LanguageDrawer {...this.state} drawerProps={this.drawerProps} languagesUrl={languagesUrl} />

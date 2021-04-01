@@ -7,6 +7,7 @@ Td {
     height: 1px;
 }
 
-.classBox {
+.mainBox {
+    margin: 30px;
     padding: 15px;
 }

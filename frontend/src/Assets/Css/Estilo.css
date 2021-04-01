@@ -15,7 +15,7 @@ body{
     width: 30vw;
     min-width: 30vw;
     height: 100%;
-    background-color: cornflowerblue;
+    background-color: #6398BC;
     transition: 0.5s;
     overflow: hidden;
 }

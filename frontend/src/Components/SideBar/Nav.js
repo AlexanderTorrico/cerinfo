@@ -15,7 +15,7 @@ class Nav extends Component{
          
         return (
              <React.Fragment>
-                 <Flex className="Nav" h="50" w="full"  bg="#EAECEE">
+                 <Flex className="Nav" h="50" w="full"  bg="#B0C6D6">
                     <Spacer />
                     <Flex>
                         <Center h="50px"w="50px" >
