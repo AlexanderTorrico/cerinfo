@@ -3,14 +3,18 @@ import React,{Component} from 'react';
 import { Box} from "@chakra-ui/react";
 import { AddIcon,EmailIcon,TimeIcon,WarningTwoIcon,UnlockIcon,DragHandleIcon } from '@chakra-ui/icons'
 import { ListItem, UnorderedList,Link } from "@chakra-ui/react"
-import Nav from './Nav'
+import { Image } from "@chakra-ui/react"
 import "./../../Assets/Css/Estilo.css"
+import Logo_Nur from "./../../Assets/Img/LOGO NUR BLANCO.png"
 class SideBar extends Component{   
     render(){ 
         return (
              <React.Fragment>
-                 <Box className="navegation" position="absolute">
+                 <Box className="navegation" >
                     <UnorderedList>
+                        <ListItem>
+                            <Image src={Logo_Nur} alt="Logo" />
+                        </ListItem>
                         <ListItem>
                             <Link href="https://chakra-ui.com" isExternal   >
                                 <span className="icon">
