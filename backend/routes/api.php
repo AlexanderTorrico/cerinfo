@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GenderController;
+use App\Http\Controllers\MaterialController;
 use App\Models\Area;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Gender;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\AreaController;
 
@@ -23,7 +25,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/login', [AuthController::class, "login"])->name('login');
-Route::post('/register', [AuthController::class, "register"]);
+Route::post('/registerAdministrator', [AuthController::class, "registerAdministrator"]);
+Route::post('/registerMaster', [AuthController::class, "registerMaster"]);
+Route::post('/registerAssistant', [AuthController::class, "registerAssistant"]);
+Route::post('/registerStudent', [AuthController::class, "registerStudent"]);
+
+//GENDER
+Route::group(['middleware' => ['auth:api','role:Administrator']], function () {
+    Route::resource("gender", GenderController::class);
+});
+
+//MATERIAL
+Route::group(['middleware' => ['auth:api','role:Administrator']], function () {
+    Route::resource("material", MaterialController::class);
+});
+
+
+
 
 
 Route::get('language', [LanguageController::class,'index']);
@@ -31,6 +49,12 @@ Route::get('language/{id}', [LanguageController::class,'show']);
 Route::post('language', [LanguageController::class,'store']);
 Route::put('language/{id}', [LanguageController::class,'update']);
 Route::delete('language/{language}', [LanguageController::class,'destroy']);
+
+
+
+
+
+
 
 Route::get('area', [AreaController::class,'index']);
 Route::get('area/{id}', [AreaController::class,'show']);

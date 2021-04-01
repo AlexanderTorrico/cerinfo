@@ -1,23 +1,66 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function registerAdministrator(Request $request)
     {
-        $user = User::create([
-            "name" => $request->json('name'),
-            "email" => $request->json('email'),
-            "password" => bcrypt($request->json('password')
-            ),
-        ]);
+        $objUser = new User();
+        $objUser->name = $request->get('name');
+        $objUser->email = $request->get('email');
+        $objUser->password = bcrypt($request->get('password'));
+        $objUser->save();
+        $objUser->assignRole('Administrator');
         return response()->json([
             "res" => "success",
-            "data" => $user
+            "data" => $objUser
+        ]);
+
+    }
+    public function registerAssistant(Request $request)
+    {
+        $objUser = new User();
+        $objUser->name = $request->get('name');
+        $objUser->email = $request->get('email');
+        $objUser->password = bcrypt($request->get('password'));
+        $objUser->save();
+        $objUser->assignRole('Assistant');
+        return response()->json([
+            "res" => "success",
+            "data" => $objUser
+        ]);
+    }
+
+    public function registerMaster(Request $request)
+    {
+        $objUser = new User();
+        $objUser->name = $request->get('name');
+        $objUser->email = $request->get('email');
+        $objUser->password = bcrypt($request->get('password'));
+        $objUser->save();
+        $objUser->assignRole('Master');
+        return response()->json([
+            "res" => "success",
+            "data" => $objUser
+        ]);
+    }
+
+    public function registerStudent(Request $request)
+    {
+        $objUser = new User();
+        $objUser->name = $request->get('name');
+        $objUser->email = $request->get('email');
+        $objUser->password = bcrypt($request->get('password'));
+        $objUser->save();
+        $objUser->assignRole('Student');
+        return response()->json([
+            "res" => "success",
+            "data" => $objUser
         ]);
     }
 

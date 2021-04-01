@@ -14,7 +14,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        //
+        return Material::all();
     }
 
     /**
@@ -35,7 +35,11 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $obj = Material::create([
+            'name' => $request->name
+
+        ]);
+        return response()->json($obj, 201);
     }
 
     /**
@@ -44,9 +48,9 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function show(Material $material)
+    public function show($id)
     {
-        //
+        return  Material::find($id);
     }
 
     /**
@@ -67,9 +71,11 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Material $material)
+    public function update(Request $request, $id )
     {
-        //
+        $material = Material::findOrFail($id);
+        $material->update($request->all());
+        return $material;
     }
 
     /**
@@ -78,8 +84,16 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Material $material)
+    public function destroy($id)
     {
-        //
+        try {
+            $material = Material::find($id);
+            $material->delete();
+            $info = ['nombre' => 'Rafael'];
+            return response()->json($info,204);
+        } catch (\Exception $e) {
+            $info = ['estado' => 'error'];
+            return response()->json($info,501);
+        }
     }
 }
