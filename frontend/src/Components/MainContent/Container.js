@@ -3,6 +3,7 @@ import { Box} from "@chakra-ui/react";
 import "./../../Assets/Css/Estilo.css";
 import SideBar from '../SideBar/SideBar';
 import Nav from '../SideBar/Nav';
+import LanguagePage from '../languages/language_index.js'
 
 class Container extends Component{   
     render(){ 
@@ -15,8 +16,8 @@ class Container extends Component{
                         </Box>
                         <Box h="full">
                             <Nav></Nav>
-                            <Box className="Main" bg="lightblue">
-
+                            <Box className="Main">
+                                <LanguagePage />
                             </Box>
                         </Box>   
                  </Box>
