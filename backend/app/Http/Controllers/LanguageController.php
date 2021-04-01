@@ -71,10 +71,12 @@ class LanguageController extends Controller
      * @param  \App\Models\Language  $language
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Language $obj)
+    public function update(Request $request, $id)
     {
-        $obj->update($request->all());
-        return response()->json($obj, 200);
+        $language = Language::findOrFail($id);
+        $language->update($request->all());
+        return $language;
+
     }
 
     /**
