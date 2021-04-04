@@ -11,3 +11,9 @@ Td {
     margin: 30px;
     padding: 15px;
 }
+
+.Title {
+    font-size: 25px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}

@@ -84,7 +84,7 @@ class LanguagePage extends Component {
         return (
             <React.Fragment>
                 <Box bg="white" p="15px">
-                    <Text fontSize="4x1">Configuraciones de lenguaje</Text>
+                    <Text className="Title">Configuraciones de lenguaje</Text>
                 </Box>
 
                 <SimpleGrid justifyContent="center" >
