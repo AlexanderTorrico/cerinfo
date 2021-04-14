@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Box, Flex, Center } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import "./../../Assets/Css/Estilo.css";
 import SideBar from '../SideBar/SideBar';
 import Nav from '../SideBar/Nav';
 
 import LanguagePage from '../languages/language_index.js'
 
-import Modal_Autor from '../Modal/Autor_Modal';
+//import Modal_Autor from '../Modal/Autor_Modal';
 
 class Container extends Component {
     render() {

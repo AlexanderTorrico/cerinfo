@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import './language.css'
 import LanguageDrawer from './language_drawer.js'
-import { FaCheck, FaTimes, FaPencilAlt, FaTrashAlt, FaSistrix } from "react-icons/fa";
+import { FaCheck, FaTimes, FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import {
-    Text, Button, IconButton, Spacer, Flex, Input, InputRightElement, Container, SimpleGrid, Drawer, Divider, Box,
+    Text, Button, IconButton, Spacer, Flex, SimpleGrid, Drawer, Box,
     Table, Thead, Tbody, Th, Tr, Td,
-    Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverFooter, PopoverArrow, PopoverCloseButton,
+    Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverArrow
 } from '@chakra-ui/react'
 
 const languagesUrl = "http://127.0.0.1:8000/api/language/"
@@ -61,25 +61,6 @@ class LanguagePage extends Component {
         type === 'closed' && this.peticionGet();
     }
 
-    /*openCloseDrawer = (data, obj) => {
-        this.setState({ drawerMode: data, popoverSeeker: false, popoverList: false })
-
-        switch (data) {
-            case 'closed':
-                this.peticionGet()
-                break;
-            case 'edit':
-                this.setState({
-                    langSelected: {
-                        id: obj.id, name: obj.name, abbreviation: obj.abbreviation
-                    }
-                })
-                break;
-            default:
-                break;
-        }
-    } */
-
     render() {
         return (
             <React.Fragment>
@@ -89,7 +70,7 @@ class LanguagePage extends Component {
 
                 <SimpleGrid justifyContent="center" >
                     <Box shadow="md" width="100%" borderWidth="1px" borderRadius="lg" className="mainBox" bg="white">
-                        <Button colorScheme="twitter" isRound={true} position="right" onClick={() => { this.drawerProps('add', null) }}>Agregar lenguaje</Button>
+                        <Button colorScheme="twitter"  position="right" onClick={() => { this.drawerProps('add', null) }}>Agregar lenguaje</Button>
                         <Table variant="striped" colorScheme="twitter" size="lg" spacing="40px">
                             <Thead>
                                 <Tr>
@@ -107,15 +88,15 @@ class LanguagePage extends Component {
                                             <Td>{lang.name}</Td>
                                             <Td>{lang.abbreviation}</Td>
                                             <Td>
-                                                <SimpleGrid columns={2} spacing="10">
-                                                    <IconButton colorScheme="twitter" onClick={() => { this.drawerProps('edit', lang) }} isRound={true} icon={<FaPencilAlt />} />
+                                                <SimpleGrid columns={2} spacing="1">
+                                                    <IconButton colorScheme="twitter" className="iconButtonRounded" onClick={() => { this.drawerProps('edit', lang) }} icon={<FaPencilAlt />} />
                                                     <Popover placement="right-end" autoFocus={true} isOpen={this.state.popoverList === lang.id}>
                                                         <PopoverTrigger>
-                                                            <IconButton onClick={() => { this.setState({ popoverList: lang.id }) }} isRound={true} icon={<FaTrashAlt />} />
+                                                            <IconButton className="iconButtonRounded" onClick={() => { this.setState({ popoverList: lang.id }) }} icon={<FaTrashAlt />} />
                                                         </PopoverTrigger>
                                                         <PopoverContent>
                                                             <PopoverArrow />
-                                                            <PopoverHeader>{"¿Esta seguro de eliminar el idioma " + lang.name + "?"}</PopoverHeader>
+                                                            <PopoverHeader>{"¿Esta seguro de eliminar el idioma " + lang.name.toLowerCase() + "?"}</PopoverHeader>
                                                             <PopoverBody>
                                                                 <Flex direction="row" >
                                                                     <Spacer />
@@ -130,7 +111,6 @@ class LanguagePage extends Component {
                                                     </Popover>
                                                 </SimpleGrid>
                                             </Td>
-
                                         </Tr>
                                     )
                                 })}
@@ -138,7 +118,6 @@ class LanguagePage extends Component {
                         </Table>
                     </Box>
                 </SimpleGrid>
-
 
                 <Drawer isOpen={this.state.drawerMode !== 'closed'}>
                     <LanguageDrawer {...this.state} drawerProps={this.drawerProps} languagesUrl={languagesUrl} />

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Flex,Center,Spacer, AvatarGroup,AiOutlineUser,Avatar} from "@chakra-ui/react";
+import { Flex,Center,Spacer, AvatarGroup, Avatar} from "@chakra-ui/react";
 import "./../../Assets/Css/Estilo.css";
 import Toggle from "./Toggle"
 
