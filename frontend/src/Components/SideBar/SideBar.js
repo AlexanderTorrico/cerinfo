@@ -57,11 +57,11 @@ class SideBar extends Component{
                             </Link>
                         </ListItem>
                         <ListItem>
-                            <Link to="/landing_page"  >
+                            <Link to="/language"  >
                                 <span className="icon">
                                     <DragHandleIcon className="fa" aria-hidden="true"></DragHandleIcon>
                                 </span>
-                                <span className="tittle">Landing Page</span>
+                                <span className="tittle">Lenguaje</span>
                             </Link>
                         </ListItem>
                     </UnorderedList>

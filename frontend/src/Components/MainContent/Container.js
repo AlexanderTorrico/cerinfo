@@ -37,7 +37,7 @@ class Container extends Component {
                                     <Route path="/bloqueos">
                                         <h1>Bloqueos</h1>
                                     </Route>
-                                    <Route path="/landing_page">
+                                    <Route path="/language">
                                         <LanguagePage />
                                     </Route>
                                 </Switch>
