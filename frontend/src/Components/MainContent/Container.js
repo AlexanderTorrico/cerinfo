@@ -18,9 +18,10 @@ class Container extends Component {
                 <Flex className="este">
                     <Router>
                         <SideBar></SideBar>
-                        <Box className="content" w="full" h="full">
+
+                        <Box className="content" display="flex" flexDirection="column" w="full" h="full">
                             <Nav></Nav>
-                            <Box className="Main" bg="#E4EFE9" h="full">
+                            <Box className="Main" bg="#E4EFE9" h="full" overflow="auto">
                                 <Switch>
                                     <Route path="/agregar">
                                         <h1>Agregar</h1>
