@@ -72,10 +72,11 @@ class AreaController extends Controller
      * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Area $area)
+    public function update(Request $request, $id)
     {
+        $area = Area::findOrFail($id);
         $area->update($request->all());
-        return response()->json($article, 200);
+        return $area;
     }
 
     /**
@@ -87,8 +88,8 @@ class AreaController extends Controller
     public function destroy($id)
     {
         try {
-            $language = Area::find($id);
-            $language->delete();
+            $area = Area::find($id);
+            $area->delete();
             $info = ['estado' => 'ok'];
             return response()->json($info,204);
         } catch (\Exception $e) {
