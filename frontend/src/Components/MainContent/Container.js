@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, CircularProgress, Spinner } from "@chakra-ui/react";
 import "./../../Assets/Css/Estilo.css";
 import SideBar from '../SideBar/SideBar';
 import Nav from '../SideBar/Nav';
 
 import LanguagePage from '../languages/language_index.js'
+import AreaPage from '../areas/area_index.js'
 
 //import Modal_Autor from '../Modal/Autor_Modal';
 
@@ -33,13 +34,17 @@ class Container extends Component {
                                         <h1>Prestamos y devoluciones</h1>
                                     </Route>
                                     <Route path="/multas">
-                                        <h1>Multas</h1>
+                                        <CircularProgress isIndeterminate opacity={1} size="100px" color="#6398bc" />
+                                        <Spinner color="brand.pnk" size="100px"/>
                                     </Route>
                                     <Route path="/bloqueos">
                                         <h1>Bloqueos</h1>
                                     </Route>
                                     <Route path="/language">
                                         <LanguagePage />
+                                    </Route>
+                                    <Route path="/area">
+                                        <AreaPage />
                                     </Route>
                                 </Switch>
                             </Box>
