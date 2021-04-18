@@ -7,8 +7,9 @@ import {
     Table, Thead, Tbody, Th, Tr, Td,
     Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverArrow
 } from '@chakra-ui/react'
+import { URL } from '../settings';
 
-const areasUrl = "http://127.0.0.1:8000/api/area/"
+const areasUrl = URL + "area/"
 
 class AreaPage extends Component {
     constructor(props) {

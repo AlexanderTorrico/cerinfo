@@ -8,8 +8,9 @@ import {
     Table, Thead, Tbody, Th, Tr, Td,
     Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverArrow
 } from '@chakra-ui/react'
+import { URL } from '../settings';
 
-const languagesUrl = "http://127.0.0.1:8000/api/language/"
+const languagesUrl = URL + "language/"
 
 class LanguagePage extends Component {
     constructor(props) {
