@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { FaCheck, FaTimes } from "react-icons/fa";
 import {
-    Flex, Input, Center, IconButton, Button, Spacer, Container, Stack, Divider, Text,
-    Drawer,
+    Flex, Input, IconButton, Spacer, Container, Divider,
     DrawerBody,
     DrawerFooter,
     DrawerHeader,
     DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,s
+    DrawerContent
 } from "@chakra-ui/react"
 
 class LanguageDrawer extends Component {
@@ -26,8 +24,10 @@ class LanguageDrawer extends Component {
     }
 
     componentDidMount() {
-        if (this.props.drawerMode=='edit') {
+        if (this.props.drawerMode==='edit') {
             this.setState({inputs: this.props.langSelected})
+        } else {
+            this.setState({ inputs:{name: '', abbreviation: ''} })
         }
     }
 
@@ -43,14 +43,6 @@ class LanguageDrawer extends Component {
 
     closeDrawer = () => {
         const openCloseDrawer = this.props.drawerProps
-
-        this.setState({
-            inputs: {
-                name: '',
-                abbreviation: ''
-            }
-        })
-        
         openCloseDrawer('closed', {id: '', name: '', abbreviation: ''})
     }
 
@@ -86,21 +78,17 @@ class LanguageDrawer extends Component {
                             <Flex direction="column" alignContent="center">
                                 <label htmlFor="name" ><h1>Nombre</h1></label>
                                 <Input
-                                size="md"
-                                id="name"
-                                name="name"
+                                size="md" id="name" name="name"
                                 value={this.state.inputs.name}
                                 onChange={this.InputChanges.bind(this)}
                                 />
                                 <br />
+                                <label htmlFor="abbreviation"><h1>Sigla</h1></label>
                                 <Input
-                                size="md"
-                                id="abbreviation"
-                                name="abbreviation"
+                                size="md" id="abbreviation" name="abbreviation"
                                 value={this.state.inputs.abbreviation}
                                 onChange={this.InputChanges.bind(this)}
                                 />
-                                <label htmlFor="abbreviation"><h1>Sigla</h1></label>
                             </Flex>
                         </DrawerBody>
 
@@ -109,9 +97,18 @@ class LanguageDrawer extends Component {
                                 <Divider />
                                 <br />
                                 <Flex direction="row">
-                                    <IconButton colorScheme="twitter" icon={<FaCheck />} onClick={this.props.drawerMode==='add'? ()=>{this.peticionPost()} : ()=>{this.peticionPut()} }/>
+                                    <IconButton
+                                    colorScheme="twitter"
+                                    onClick={this.props.drawerMode==='add'? ()=>{this.peticionPost()} : ()=>{this.peticionPut()}}
+                                    disabled={this.state.inputs.name===''||this.state.inputs.abbreviation===''}
+                                    icon={<FaCheck />}
+                                    />
                                     <Spacer />
-                                    <IconButton colorScheme="twitter" variant="outline" onClick={()=>{this.closeDrawer()}} icon={<FaTimes />} />
+                                    <IconButton
+                                    colorScheme="twitter" variant="outline"
+                                    onClick={()=>{this.closeDrawer()}}
+                                    icon={<FaTimes />}
+                                />
                                 </Flex>
                             </Container>
                         </DrawerFooter>
@@ -120,6 +117,5 @@ class LanguageDrawer extends Component {
         )
     }
 }
-
 
 export default LanguageDrawer

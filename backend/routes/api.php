@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Gender;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\AreaController;
-
+use App\Http\Controllers\AuthorController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -66,3 +66,11 @@ Route::put('area/{id}',  function (Request $request, $id)
     return $area;
 });
 Route::delete('area/{area}', [AreaController::class,'destroy']);
+
+
+
+Route::get('autor', [AuthorController::class,'index']);
+Route::get('autor/{id}', [AuthorController::class,'show']);
+Route::post('autor', [AuthorController::class,'store']);
+Route::put('autor/{id}', [AuthorController::class,'update']);
+Route::delete('autor/{author}', [AuthorController::class,'destroy']);

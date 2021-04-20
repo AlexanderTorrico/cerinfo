@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Box, Flex, Center } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import "./../../Assets/Css/Estilo.css";
 import SideBar from '../SideBar/SideBar';
 import Nav from '../SideBar/Nav';
 
 import LanguagePage from '../languages/language_index.js'
-
-import Modal_Autor from '../Modal/Autor_Modal';
+import AuthorPage from '../Form/Autor_List'
+//import Modal_Autor from '../Modal/Autor_Modal';
 
 class Container extends Component {
     render() {
@@ -18,9 +18,10 @@ class Container extends Component {
                 <Flex className="este">
                     <Router>
                         <SideBar></SideBar>
-                        <Box className="content" w="full" h="full">
+
+                        <Box className="content" display="flex" flexDirection="column" w="full" h="full">
                             <Nav></Nav>
-                            <Box className="Main" bg="#E4EFE9" h="full">
+                            <Box className="Main" bg="#E4EFE9" h="full" overflow="auto">
                                 <Switch>
                                     <Route path="/agregar">
                                         <h1>Agregar</h1>
@@ -37,8 +38,11 @@ class Container extends Component {
                                     <Route path="/bloqueos">
                                         <h1>Bloqueos</h1>
                                     </Route>
-                                    <Route path="/landing_page">
+                                    <Route path="/language">
                                         <LanguagePage />
+                                    </Route>
+                                    <Route path="/autor">
+                                        <AuthorPage />
                                     </Route>
                                 </Switch>
                             </Box>
