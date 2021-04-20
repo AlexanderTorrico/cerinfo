@@ -80,6 +80,14 @@ class SideBar extends Component{
                                 <span className="tittle">Autor</span>
                             </Link>
                         </ListItem>
+                        <ListItem>
+                            <Link to="/categoria"  >
+                                <span className="icon">
+                                    <AttachmentIcon className="fa" aria-hidden="true"></AttachmentIcon>
+                                </span>
+                                <span className="tittle">Categoria</span>
+                            </Link>
+                        </ListItem>
                     </UnorderedList>
                 </Box>
             </React.Fragment>
