@@ -6,10 +6,9 @@ import {
     DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent
 } from "@chakra-ui/react"
 
-class LanguageDrawer extends Component {
+class AreaDrawer extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             inputs: { id: '', name: '', abbreviation: '' }
         }
@@ -17,7 +16,7 @@ class LanguageDrawer extends Component {
 
     componentDidMount() {
         if (this.props.drawerMode==='edit') {
-            this.setState({inputs: this.props.langSelected})
+            this.setState({inputs: this.props.areaSelected})
         } else {
             this.setState({ inputs:{name: '', abbreviation: ''} })
         }
@@ -39,7 +38,7 @@ class LanguageDrawer extends Component {
     }
 
     peticionPost = () => {
-        axios.post(this.props.languagesUrl, this.state.inputs).then(res=>{
+        axios.post(this.props.areasUrl, this.state.inputs).then(res=>{
             this.closeDrawer()
         }).catch(error=>{
             console.log(error.message)
@@ -48,7 +47,7 @@ class LanguageDrawer extends Component {
     }
 
     peticionPut = () => {
-        axios.put(this.props.languagesUrl+this.state.inputs.id, this.state.inputs).then(res=>{
+        axios.put(this.props.areasUrl+this.state.inputs.id, this.state.inputs).then(res=>{
             this.closeDrawer()
         }).catch(error=>{
             console.log(error.message)
@@ -61,7 +60,7 @@ class LanguageDrawer extends Component {
                     <DrawerOverlay />
                     <DrawerContent>
                         <DrawerHeader>
-                            {this.props.drawerMode==='add'? <h1>Añadir lenguaje</h1> : <h1>Editar lenguaje</h1> }
+                            {this.props.drawerMode==='add'? <h1>Añadir área</h1> : <h1>Editar área</h1> }
                             <br />
                             <Divider />
                         </DrawerHeader>
@@ -110,4 +109,4 @@ class LanguageDrawer extends Component {
     }
 }
 
-export default LanguageDrawer
+export default AreaDrawer

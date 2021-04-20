@@ -61,7 +61,15 @@ class SideBar extends Component{
                                 <span className="icon">
                                     <DragHandleIcon className="fa" aria-hidden="true"></DragHandleIcon>
                                 </span>
-                                <span className="tittle">Lenguaje</span>
+                                <span className="tittle">Lenguajes</span>
+                            </Link>
+                        </ListItem>
+                        <ListItem>
+                            <Link to="/area"  >
+                                <span className="icon">
+                                    <DragHandleIcon className="fa" aria-hidden="true"></DragHandleIcon>
+                                </span>
+                                <span className="tittle">Areas</span>
                             </Link>
                         </ListItem>
                         <ListItem>

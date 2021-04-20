@@ -52,19 +52,10 @@ Route::delete('language/{language}', [LanguageController::class,'destroy']);
 
 
 
-
-
-
-
 Route::get('area', [AreaController::class,'index']);
 Route::get('area/{id}', [AreaController::class,'show']);
 Route::post('area', [AreaController::class,'store']);
-Route::put('area/{id}',  function (Request $request, $id)
-{
-    $area = Area::findOrFail($id);
-    $area->update($request->all());
-    return $area;
-});
+Route::put('area/{id}', [AreaController::class,'update']);
 Route::delete('area/{area}', [AreaController::class,'destroy']);
 
 
@@ -74,3 +65,5 @@ Route::get('autor/{id}', [AuthorController::class,'show']);
 Route::post('autor', [AuthorController::class,'store']);
 Route::put('autor/{id}', [AuthorController::class,'update']);
 Route::delete('autor/{author}', [AuthorController::class,'destroy']);
+
+
