@@ -10,6 +10,8 @@ use App\Models\Gender;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CategoriesController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -67,3 +69,8 @@ Route::put('autor/{id}', [AuthorController::class,'update']);
 Route::delete('autor/{author}', [AuthorController::class,'destroy']);
 
 
+Route::get('categoria', [CategoriesController::class,'index']);
+Route::get('categoria/{id}', [CategoriesController::class,'show']);
+Route::post('categoria', [CategoriesController::class,'store']);
+Route::put('categoria/{id}', [CategoriesController::class,'update']);
+Route::delete('categoria/{category}', [CategoriesController::class,'destroy']);
