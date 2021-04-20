@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 
 import { Box} from "@chakra-ui/react";
 import { Link } from "react-router-dom"
-import { AddIcon,EmailIcon,TimeIcon,WarningTwoIcon,UnlockIcon,DragHandleIcon } from '@chakra-ui/icons'
+import { AddIcon,EmailIcon,TimeIcon,WarningTwoIcon,UnlockIcon,DragHandleIcon,AttachmentIcon } from '@chakra-ui/icons'
 import { ListItem, UnorderedList} from "@chakra-ui/react"
 import { Image } from "@chakra-ui/react"
 import "./../../Assets/Css/Estilo.css"
@@ -62,6 +62,14 @@ class SideBar extends Component{
                                     <DragHandleIcon className="fa" aria-hidden="true"></DragHandleIcon>
                                 </span>
                                 <span className="tittle">Lenguaje</span>
+                            </Link>
+                        </ListItem>
+                        <ListItem>
+                            <Link to="/autor"  >
+                                <span className="icon">
+                                    <AttachmentIcon className="fa" aria-hidden="true"></AttachmentIcon>
+                                </span>
+                                <span className="tittle">Autor</span>
                             </Link>
                         </ListItem>
                     </UnorderedList>

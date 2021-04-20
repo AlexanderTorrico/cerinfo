@@ -14,7 +14,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        return Author::all();
     }
 
     /**
@@ -35,7 +35,14 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $obj = Author::create([
+            'name' => $request->name,
+            'country' => $request->country,
+            'city' => $request->city,
+            'date_birth' => $request->date_birth
+        ]);
+        return response()->json($obj, 201);
     }
 
     /**
@@ -44,9 +51,9 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function show(Author $author)
+    public function show($id)
     {
-        //
+        return  Author::find($id);
     }
 
     /**
@@ -67,9 +74,11 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Author $author)
+    public function update(Request $request, $id)
     {
-        //
+        $obj = Author::findOrFail($id);
+        $obj->update($request->all());
+        return $obj;
     }
 
     /**
@@ -78,8 +87,17 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Author $author)
+    public function destroy($id)
     {
-        //
+
+        try {
+            $author = Author::find($id);
+            $author->delete();
+            $info = ['nombre' => 'Rafael'];
+            return response()->json($info,204);
+        } catch (\Exception $e) {
+            $info = ['estado' => 'error'];
+            return response()->json($info,501);
+        }
     }
 }
