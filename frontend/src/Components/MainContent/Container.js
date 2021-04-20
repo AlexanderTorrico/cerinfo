@@ -7,6 +7,8 @@ import Nav from '../SideBar/Nav';
 
 import LanguagePage from '../languages/language_index.js'
 import AuthorPage from '../Form/Autor_List'
+import AreaPage from '../areas/area_index'
+
 //import Modal_Autor from '../Modal/Autor_Modal';
 
 class Container extends Component {
@@ -40,6 +42,9 @@ class Container extends Component {
                                     </Route>
                                     <Route path="/language">
                                         <LanguagePage />
+                                    </Route>
+                                    <Route path="/area">
+                                        <AreaPage />
                                     </Route>
                                     <Route path="/autor">
                                         <AuthorPage />
