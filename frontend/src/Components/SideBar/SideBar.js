@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 
-import { Box} from "@chakra-ui/react";
+import { Box,Accordion,AccordionItem,AccordionButton,AccordionIcon,AccordionPanel} from "@chakra-ui/react";
 import { Link } from "react-router-dom"
 import { AddIcon,EmailIcon,TimeIcon,WarningTwoIcon,UnlockIcon,DragHandleIcon,AttachmentIcon } from '@chakra-ui/icons'
 import { ListItem, UnorderedList} from "@chakra-ui/react"
@@ -57,37 +57,65 @@ class SideBar extends Component{
                             </Link>
                         </ListItem>
                         <ListItem>
-                            <Link to="/language"  >
-                                <span className="icon">
-                                    <DragHandleIcon className="fa" aria-hidden="true"></DragHandleIcon>
-                                </span>
-                                <span className="tittle">Lenguajes</span>
-                            </Link>
+                        <Accordion  allowToggle >
+                            <AccordionItem border="0">
+                                <h2>
+                                <AccordionButton height="60px" color="white" className="btnAcordeon">
+                                    <Box flex="1" textColor="white" textAlign="left">
+                                        
+                                        <span className="tittle">Informacion de libros</span>
+                                    </Box>
+                                    <AccordionIcon />
+                                </AccordionButton>
+                                </h2>
+                                <AccordionPanel padding="0">
+                                    <UnorderedList>
+                                        <ListItem>
+                                            <Link to="/language" >
+                                                <span className="icon">
+                                                    <DragHandleIcon className="fa" aria-hidden="true"></DragHandleIcon>
+                                                </span>
+                                                <span className="tittle">Lenguajes</span>
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem>
+                                            <Link to="/area"  >
+                                                <span className="icon">
+                                                    <DragHandleIcon className="fa" aria-hidden="true"></DragHandleIcon>
+                                                </span>
+                                                <span className="tittle">Areas</span>
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem>
+                                            <Link to="/autor"  >
+                                                <span className="icon">
+                                                    <AttachmentIcon className="fa" aria-hidden="true"></AttachmentIcon>
+                                                </span>
+                                                <span className="tittle">Autor</span>
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem>
+                                            <Link to="/categoria"  >
+                                                <span className="icon">
+                                                    <AttachmentIcon className="fa" aria-hidden="true"></AttachmentIcon>
+                                                </span>
+                                                <span className="tittle">Categoria</span>
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem>
+                                            <Link to="/genero"  >
+                                                <span className="icon">
+                                                    <AttachmentIcon className="fa" aria-hidden="true"></AttachmentIcon>
+                                                </span>
+                                                <span className="tittle">Genero</span>
+                                            </Link>
+                                        </ListItem>
+                                    </UnorderedList>
+                                </AccordionPanel>
+                            </AccordionItem>
+                        </Accordion>
                         </ListItem>
-                        <ListItem>
-                            <Link to="/area"  >
-                                <span className="icon">
-                                    <DragHandleIcon className="fa" aria-hidden="true"></DragHandleIcon>
-                                </span>
-                                <span className="tittle">Areas</span>
-                            </Link>
-                        </ListItem>
-                        <ListItem>
-                            <Link to="/autor"  >
-                                <span className="icon">
-                                    <AttachmentIcon className="fa" aria-hidden="true"></AttachmentIcon>
-                                </span>
-                                <span className="tittle">Autor</span>
-                            </Link>
-                        </ListItem>
-                        <ListItem>
-                            <Link to="/categoria"  >
-                                <span className="icon">
-                                    <AttachmentIcon className="fa" aria-hidden="true"></AttachmentIcon>
-                                </span>
-                                <span className="tittle">Categoria</span>
-                            </Link>
-                        </ListItem>
+                        
                     </UnorderedList>
                 </Box>
             </React.Fragment>
