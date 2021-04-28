@@ -110,6 +110,14 @@ class SideBar extends Component{
                                                 <span className="tittle">Genero</span>
                                             </Link>
                                         </ListItem>
+                                        <ListItem>
+                                            <Link to="/material"  >
+                                                <span className="icon">
+                                                    <AttachmentIcon className="fa" aria-hidden="true"></AttachmentIcon>
+                                                </span>
+                                                <span className="tittle">Material</span>
+                                            </Link>
+                                        </ListItem>
                                     </UnorderedList>
                                 </AccordionPanel>
                             </AccordionItem>

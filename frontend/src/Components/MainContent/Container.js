@@ -9,6 +9,8 @@ import LanguagePage from '../languages/language_index.js'
 import AuthorPage from '../Form/Autor_List'
 import CategoriaPage from '../Form/Categoria_List'
 import AreaPage from '../areas/area_index'
+import GenderPage from '../genders/gender_index'
+import MaterialPage from '../materials/material_index'
 
 
 //import Modal_Autor from '../Modal/Autor_Modal';
@@ -53,6 +55,12 @@ class Container extends Component {
                                     </Route>
                                     <Route path="/categoria">
                                         <CategoriaPage />
+                                    </Route>
+                                    <Route path="/gender">
+                                        <GenderPage />
+                                    </Route>
+                                    <Route path="/material">
+                                        <MaterialPage />
                                     </Route>
                                 </Switch>
                             </Box>

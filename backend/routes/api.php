@@ -33,17 +33,17 @@ Route::post('/registerAssistant', [AuthController::class, "registerAssistant"]);
 Route::post('/registerStudent', [AuthController::class, "registerStudent"]);
 
 //GENDER
-Route::group(['middleware' => ['auth:api','role:Administrator']], function () {
-    Route::resource("gender", GenderController::class);
-});
+//Route::group(['middleware' => ['auth:api','role:Administrator']], function () {
+//    Route::resource("gender", GenderController::class);
+//});
+//
+////MATERIAL
+//Route::group(['middleware' => ['auth:api','role:Administrator']], function () {
+//    Route::resource("material", MaterialController::class);
+//});
 
-//MATERIAL
-Route::group(['middleware' => ['auth:api','role:Administrator']], function () {
-    Route::resource("material", MaterialController::class);
-});
-
-
-
+Route::resource("gender", GenderController::class);
+Route::resource("material", MaterialController::class);
 
 
 Route::get('language', [LanguageController::class,'index']);
