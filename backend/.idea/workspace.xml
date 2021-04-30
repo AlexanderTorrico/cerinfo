@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4734889-3fd9-4fea-91fc-c809aef13192" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.rnd" beforeDir="false" afterPath="$PROJECT_DIR$/.rnd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/MainContent/Container.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/MainContent/Container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/SideBar/SideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +196,8 @@
       <workItem from="1617160007916" duration="43000" />
       <workItem from="1617160466299" duration="3277000" />
       <workItem from="1617193326849" duration="1122000" />
-      <workItem from="1619633474742" duration="26000" />
+      <workItem from="1619633474742" duration="1821000" />
+      <workItem from="1619790549614" duration="875000" />
     </task>
     <servers />
   </component>
