@@ -4,17 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        return Area::all();
+        try {
+            $listaArea = Area::all();
+            return response()->json([
+                "res" => "success",
+                "data" => $listaArea
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener lista de las Areas"
+            ], 500);
+        }
     }
 
     /**
@@ -31,27 +44,64 @@ class AreaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
-        $obj = Area::create([
-            'name' => $request->name,
-            'abbreviation' => $request->abbreviation,
+        $validator = Validator::make($request->json()->all(), [
+            'name' => 'required',
+            'abbreviation' =>'required'
         ]);
-        return response()->json($obj, 201);
+        if ($validator->fails()) {
+            return response()->json([
+                "res" => "error",
+                "message" => $validator->messages()
+            ]);
+        }
+        try {
+            $objArea = new Area();
+            $objArea->fill($request->json()->all());
+            $objArea->save();
+            return response()->json([
+                "res" => "success",
+                "data" => $objArea
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al guardar el Categoria"
+            ], 500);
+        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Area  $area
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function show($id)
     {
-        return  Area::find($id);
+        try {
+            $objArea = Area::findOrFail($id);
+            if ($objArea == null) {
+                return response()->json([
+                    "res" => "error",
+                    "message" => "Area no encontrado"
+                ], 404);
+            }
+            return response()->json([
+                "res" => "success",
+                "data" => $objArea
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener el Area"
+            ], 500);
+        }
     }
 
     /**
@@ -70,13 +120,42 @@ class AreaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Area  $area
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $area = Area::findOrFail($id);
-        $area->update($request->all());
-        return $area;
+        $validator = Validator::make($request->json()->all(), [
+            'name' => 'required',
+            'abbreviation' =>'required'
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                "res" => "error",
+                "message" => $validator->messages()
+            ]);
+        }
+        try {
+            $objArea = Area::findOrFail($id);
+            if ($objArea == null) {
+                return response()->json([
+                    "res" => "error",
+                    "message" => "Area no encontrado"
+                ], 404);
+            }
+            $objArea->fill($request->json()->all());
+            $objArea->save();
+            return response()->json([
+                "res" => "success",
+                "data" => $objArea
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al guardar el Area"
+            ], 500);
+        }
     }
 
     /**

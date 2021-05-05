@@ -4,12 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
 {
     public function index()
     {
-        return Categories::all();
+        try {
+            $listaCategoria = Categories::all();
+            return response()->json([
+                "res" => "success",
+                "data" => $listaCategoria
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener lista de los Categoria"
+            ], 500);
+        }
     }
 
     /**
@@ -26,26 +39,65 @@ class CategoriesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $obj = Categories::create([
-            'name' => $request->name,
-            'abbreviation' => $request->abbreviation,
+        $validator = Validator::make($request->json()->all(), [
+            'name' => 'required',
+            'abbreviation' =>'required'
         ]);
-        return response()->json($obj, 201);
+        if ($validator->fails()) {
+            return response()->json([
+                "res" => "error",
+                "message" => $validator->messages()
+            ]);
+        }
+        try {
+            $objCategoria = new Categories();
+            $objCategoria->fill($request->json()->all());
+            $objCategoria->save();
+            return response()->json([
+                "res" => "success",
+                "data" => $objCategoria
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al guardar el Categoria"
+            ], 500);
+        }
+
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Categorys  $categorys
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function show($id)
     {
-        return  Categories::find($id);
+        try {
+            $objCategoria = Categories::findOrFail($id);
+            if ($objCategoria == null) {
+                return response()->json([
+                    "res" => "error",
+                    "message" => "Categoria no encontrado"
+                ], 404);
+            }
+            return response()->json([
+                "res" => "success",
+                "data" => $objCategoria
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener el Categoria"
+            ], 500);
+        }
     }
 
     /**
@@ -64,13 +116,42 @@ class CategoriesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Categorys  $categorys
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $language = Categories::findOrFail($id);
-        $language->update($request->all());
-        return $language;
+        $validator = Validator::make($request->json()->all(), [
+            'name' => 'required',
+            'abbreviation' =>'required'
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                "res" => "error",
+                "message" => $validator->messages()
+            ]);
+        }
+        try {
+            $objCategoria = Categories::findOrFail($id);
+            if ($objCategoria == null) {
+                return response()->json([
+                    "res" => "error",
+                    "message" => "Categoria no encontrado"
+                ], 404);
+            }
+            $objCategoria->fill($request->json()->all());
+            $objCategoria->save();
+            return response()->json([
+                "res" => "success",
+                "data" => $objCategoria
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al guardar el Categoria"
+            ], 500);
+        }
     }
 
     /**

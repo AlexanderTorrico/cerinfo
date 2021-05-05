@@ -12,11 +12,23 @@ class GenderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        return Gender::all();
+        try {
+            $listaGenero = Gender::all();
+            return response()->json([
+                "res" => "success",
+                "data" => $listaGenero
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener lista de los Generos"
+            ], 500);
+        }
     }
 
     /**
@@ -33,26 +45,68 @@ class GenderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        $obj = Gender::create([
-            'name' => $request->name
 
+        $validator = Validator::make($request->json()->all(), [
+            'name' => 'required'
         ]);
-        return response()->json($obj, 201);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "res" => "error",
+                "message" => $validator->messages()
+            ]);
+        }
+        try {
+            $objGenero = new Gender();
+            $objGenero->fill($request->json()->all());
+            $objGenero->save();
+            return response()->json([
+                "res" => "success",
+                "data" => $objGenero
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al guardar el Genero"
+            ], 500);
+        }
+
+
+
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Gender  $gender
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        return  Gender::find($id);
+        try {
+            $objGenero = Gender::findOrFail($id);
+            if ($objGenero == null) {
+                return response()->json([
+                    "res" => "error",
+                    "message" => "Genero no encontrado"
+                ], 404);
+            }
+            return response()->json([
+                "res" => "success",
+                "data" => $objGenero
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener el Genero"
+            ], 500);
+        }
     }
 
     /**
@@ -76,9 +130,37 @@ class GenderController extends Controller
     public function update(Request $request, $id)
     {
 
-        $gender = Gender::findOrFail($id);
-        $gender->update($request->all());
-        return $gender;
+        $validator = Validator::make($request->json()->all(), [
+            'name' => 'required',
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                "res" => "error",
+                "message" => $validator->messages()
+            ]);
+        }
+        try {
+            $objGenero = Gender::findOrFail($id);
+            if ($objGenero == null) {
+                return response()->json([
+                    "res" => "error",
+                    "message" => "Genero no encontrado"
+                ], 404);
+            }
+            $objGenero->fill($request->json()->all());
+            $objGenero->save();
+            return response()->json([
+                "res" => "success",
+                "data" => $objGenero
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al guardar el Genero"
+            ], 500);
+        }
     }
 
     /**

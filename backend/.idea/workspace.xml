@@ -3,6 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="d4734889-3fd9-4fea-91fc-c809aef13192" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.rnd" beforeDir="false" afterPath="$PROJECT_DIR$/.rnd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AreaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AreaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GenderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GenderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LanguageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LanguageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/MainContent/Container.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/MainContent/Container.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/SideBar/Nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/SideBar/Nav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/SideBar/SideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/auth/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/auth/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/Components/materials/material_index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/Components/materials/material_index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,6 +214,7 @@
       <workItem from="1617193326849" duration="1122000" />
       <workItem from="1619633474742" duration="1821000" />
       <workItem from="1619790549614" duration="875000" />
+      <workItem from="1620223741018" duration="10326000" />
     </task>
     <servers />
   </component>

@@ -4,17 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function index()
     {
-        return Language::all();
+        try {
+            $listaLenguage = Language::all();
+            return response()->json([
+                "res" => "success",
+                "data" => $listaLenguage
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener lista de los Lenguajes"
+            ], 500);
+        }
     }
 
     /**
@@ -31,26 +44,68 @@ class LanguageController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $obj = Language::create([
-            'name' => $request->name,
-            'abbreviation' => $request->abbreviation,
+        $validator = Validator::make($request->json()->all(), [
+            'name' => 'required',
+            'abbreviation' =>'required'
         ]);
-        return response()->json($obj, 201);
+        if ($validator->fails()) {
+            return response()->json([
+                "res" => "error",
+                "message" => $validator->messages()
+            ]);
+        }
+        try {
+            $objLenguage = new Language();
+            $objLenguage->fill($request->json()->all());
+            $objLenguage->save();
+            return response()->json([
+                "res" => "success",
+                "data" => $objLenguage
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al guardar el Lenguaje"
+            ], 500);
+        }
+
+
+
+
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Language  $language
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function show($id)
     {
-        return  Language::find($id);
+        try {
+            $objLenguage = Language::findOrFail($id);
+            if ($objLenguage == null) {
+                return response()->json([
+                    "res" => "error",
+                    "message" => "Lenguaje no encontrado"
+                ], 404);
+            }
+            return response()->json([
+                "res" => "success",
+                "data" => $objLenguage
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener el Lenguaje"
+            ], 500);
+        }
     }
 
     /**
@@ -69,13 +124,42 @@ class LanguageController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Language  $language
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $language = Language::findOrFail($id);
-        $language->update($request->all());
-        return $language;
+        $validator = Validator::make($request->json()->all(), [
+            'name' => 'required',
+            'abbreviation' =>'required'
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                "res" => "error",
+                "message" => $validator->messages()
+            ]);
+        }
+        try {
+            $objLenguage = Language::findOrFail($id);
+            if ($objLenguage == null) {
+                return response()->json([
+                    "res" => "error",
+                    "message" => "Lenguaje no encontrado"
+                ], 404);
+            }
+            $objLenguage->fill($request->json()->all());
+            $objLenguage->save();
+            return response()->json([
+                "res" => "success",
+                "data" => $objLenguage
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al guardar el Lenguaje"
+            ], 500);
+        }
 
     }
 
