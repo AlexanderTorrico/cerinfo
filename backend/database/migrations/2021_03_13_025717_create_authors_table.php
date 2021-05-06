@@ -18,7 +18,6 @@ class CreateAuthorsTable extends Migration
             $table->string('name');
             $table->string("country");
             $table->string("city");
-
             $table->date("date_birth");
             $table->timestamps();
         });

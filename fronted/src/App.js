@@ -14,8 +14,12 @@ import { ListCategoria } from './categorias/ListCategoria';
 import { FormCategoria } from './categorias/FormCategoria';
 import { ListArea } from './areas/ListArea';
 import { FormArea } from './areas/FormArea';
+import { ListAutor } from './autores/ListAutor';
+import { FormAutor } from './autores/FormAutor';
+
 import {Header} from './Header';
 import { cerrarSesion as logout, iniciarSesion } from "./actions/userActions";
+
 
 
 function App() {
@@ -90,6 +94,16 @@ function App() {
       </Route>
       <Route exact path="/categorias">
         <ListCategoria />
+      </Route>
+
+
+
+      <Route path="/autores/edit/:id" component={FormAutor}></Route>
+      <Route path="/autores/create">
+        <FormAutor />
+      </Route>
+      <Route exact path="/autores">
+        <ListAutor />
       </Route>
 
 

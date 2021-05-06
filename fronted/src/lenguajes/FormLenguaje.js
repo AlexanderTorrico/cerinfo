@@ -38,7 +38,7 @@ export const FormLenguaje= (props) => {
   }, []);
 
   const cargarLenguaje = (id) => {
-    axios.get("http://localhost:8000/api/Language/" + id, { headers }).then(
+    axios.get("http://localhost:8000/api/language/" + id, { headers }).then(
       (response) => {
         if (response.data.res !== "success") {
           swal(
@@ -90,7 +90,7 @@ export const FormLenguaje= (props) => {
   };
   const enviarInsertar = (lenguaje) => {
     axios
-      .post("http://localhost:8000/api/Language/", lenguaje, { headers })
+      .post("http://localhost:8000/api/language/", lenguaje, { headers })
       .then(
         (response) => {
           if (response.data.res !== "success") {
@@ -119,7 +119,7 @@ export const FormLenguaje= (props) => {
   };
   const enviarActualizar = (lenguaje, id) => {
     axios
-      .put("http://localhost:8000/api/Language/" + id, lenguaje, { headers })
+      .put("http://localhost:8000/api/language/" + id, lenguaje, { headers })
       .then(
         (response) => {
           if (response.data.res !== "success") {

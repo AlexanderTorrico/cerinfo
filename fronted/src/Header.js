@@ -32,8 +32,7 @@ export const Header = (props) => {
       <Link className="navbar-brand" to="/">
         Biblioteca Virtual
       </Link>
-      {sesionIniciada && (
-        <>
+     
           <NavDropdown title="Material" id="material-dropdown">
             <Link to="/materiales" className="dropdown-item">
               Lista de Material
@@ -84,6 +83,17 @@ export const Header = (props) => {
             </Link>
           </NavDropdown>
 
+
+
+          <NavDropdown title="Autor" id="autor-dropdown">
+            <Link to="/autores" className="dropdown-item">
+              Lista de Autor
+            </Link>
+            <Link to="/autores/create" className="dropdown-item">
+              Crear Autor
+            </Link>
+          </NavDropdown>
+
           
 
           
@@ -98,8 +108,7 @@ export const Header = (props) => {
               </a>
             )}
           </Nav.Item>
-        </>
-      )}
+     
     </Navbar>
   );
 };
