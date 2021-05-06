@@ -4,108 +4,14 @@
     <list default="true" id="d4734889-3fd9-4fea-91fc-c809aef13192" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.rnd" beforeDir="false" afterPath="$PROJECT_DIR$/.rnd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_13_025717_create_authors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_13_025717_create_authors_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/Component.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/Header.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/actions/userActions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/areas/FormArea.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/areas/ListArea.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/auth/Login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/categorias/FormCategoria.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/categorias/ListCategoria.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/css/estilo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/css/jquery.mCustomScrollbar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/css/js.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/css/js.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/css/material-design-iconic-font.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/css/normalize.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/css/sweet-alert.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/css/timeline.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/AlegreyaSansSC-Regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/AlegreyaSansSC-Regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/AlegreyaSansSC-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/AlegreyaSansSC-Regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/AlegreyaSansSC-Regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/Material-Design-Iconic-Font.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/Material-Design-Iconic-Font.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/Material-Design-Iconic-Font.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/Material-Design-Iconic-Font.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/Material-Design-Iconic-Font.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/OpenSans-CondLight.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/OpenSans-CondLight.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/OpenSans-CondLight.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/OpenSans-CondLight.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/OpenSans-CondLight.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/icons/SelectMaterialIndicator-white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/icons/SelectMaterialIndicator.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/icons/book.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/icons/mCSB_buttons.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/book.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/calendar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/calendar_book.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/category.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/chart.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/checklist.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/clock.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/doctor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/empresa.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/flat-book.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/font-biblioteca.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/font-escritorio.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/font-login.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/font-profesor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/font-universidad.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/fontLogin.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/iconotrabajo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/institution.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/logo1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/nav-lateral.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/nav-lateral1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/nav-lateral2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/pdf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/section.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/user-sesion.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/user01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/user02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/user03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/user04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/estilos/img/user05.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/generos/FormGenero.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/generos/ListGenero.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/lenguajes/FormLenguaje.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/lenguajes/ListLenguaje.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/materiales/FormMaterial.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/materiales/ListMaterial.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/reducers/rootReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/reducers/userReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fronted-material/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fronted/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fronted/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,6 +209,7 @@
       <workItem from="1619790549614" duration="875000" />
       <workItem from="1620223741018" duration="10326000" />
       <workItem from="1620271406787" duration="3643000" />
+      <workItem from="1620306860656" duration="7667000" />
     </task>
     <servers />
   </component>

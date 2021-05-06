@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\UserController;
 use App\Models\Area;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,13 +39,13 @@ Route::post('/registerStudent', [AuthController::class, "registerStudent"]);
 //});
 //
 ////MATERIAL
-//Route::group(['middleware' => ['auth:api','role:Administrator']], function () {
-//    Route::resource("material", MaterialController::class);
-//});
+Route::group(['middleware' => ['auth:api','role:Administrator']], function () {
+    Route::resource("material", MaterialController::class);
+});
 
 Route::resource("gender", GenderController::class);
-Route::resource("material", MaterialController::class);
-
+//Route::resource("material", MaterialController::class);
+Route::resource("usuario", UserController::class);
 
 Route::get('language', [LanguageController::class,'index']);
 Route::get('language/{id}', [LanguageController::class,'show']);

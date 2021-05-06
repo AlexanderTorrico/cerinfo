@@ -94,6 +94,26 @@ export const Header = (props) => {
             </Link>
           </NavDropdown>
 
+
+
+          <NavDropdown title="Usuario" id="autor-dropdown">
+            <Link to="/usuarios" className="dropdown-item">
+              Lista de Usuario
+            </Link>
+            <Link to="/usuarios/createAdministrador" className="dropdown-item">
+              Crear Usuario Administrador
+            </Link>
+            <Link to="/usuarios/createMaster" className="dropdown-item">
+              Crear Usuario Master
+            </Link>
+            <Link to="/usuarios/createAsistente" className="dropdown-item">
+              Crear Usuario Asistente
+            </Link>
+            <Link to="/usuarios/createEstudiante" className="dropdown-item">
+              Crear Usuario Estudiante
+            </Link>
+          </NavDropdown>
+
           
 
           

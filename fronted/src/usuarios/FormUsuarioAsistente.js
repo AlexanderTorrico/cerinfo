@@ -16,7 +16,7 @@ import {
     MibarHigh,
   } from "../Component";
 
-export const FormMaterial= (props) => {
+export const FormUsuarioAsistente= (props) => {
 
   let history = useHistory();
   const access_token = localStorage.getItem("access_token");
@@ -29,27 +29,33 @@ export const FormMaterial= (props) => {
 
   let { id } = props.match ? props.match.params : { id: 0 };
   const [name, setName] = useState("");
+  const [email, setEmail]= useState("");
+  const [password, setPassword] = useState("");
+
 
   useEffect(() => {
     if (id != 0) {
-      cargarMaterial(id);
+      cargarUsuario(id);
     }
   }, []);
 
-  const cargarMaterial = (id) => {
-    axios.get("http://localhost:8000/api/material/" + id, { headers }).then(
+  const cargarUsuario = (id) => {
+    axios.get("http://localhost:8000/api/usuario/" + id, { headers }).then(
       (response) => {
         if (response.data.res !== "success") {
           swal(
             "Error ❌!",
-            "No se ha podido obtener la lista de Materiales",
+            "No se ha podido obtener la lista de Autores",
             "danger"
           );
           return;
         }
 
-        const material = response.data.data;
-        setName(material.name);
+        const usuario = response.data.data;
+        setName(usuario.name);
+        setEmail(usuario.email);
+        setPassword(usuario.password);
+      
       },
       (error) => {
         if (error.response.status === 401) {
@@ -67,7 +73,7 @@ export const FormMaterial= (props) => {
             "Usted no tiene permiso para entrar a esta area",
             "info"
           );
-          history.push("/materiales");
+          history.push("/login");
           return;
         }
         return error;
@@ -76,18 +82,20 @@ export const FormMaterial= (props) => {
   };
   const enviarDatos = (e) => {
     e.preventDefault();
-    const material = {
+    const usuario = {
       name,
+      email,
+      password
     };
     if (id == 0) {
-      enviarInsertar(material);
+      enviarInsertar(usuario);
     } else {
-      enviarActualizar(material, id);
+      enviarActualizar(usuario, id);
     }
   };
-  const enviarInsertar = (material) => {
+  const enviarInsertar = (usuario) => {
     axios
-      .post("http://localhost:8000/api/material/", material, { headers })
+      .post("http://localhost:8000/api/registerMaster/", usuario, { headers })
       .then(
         (response) => {
           if (response.data.res !== "success") {
@@ -100,10 +108,10 @@ export const FormMaterial= (props) => {
           }
           swal(
             "Buen Trabajo!",
-            "Su nueva Material fue añadido Correctamente!",
+            "El nuevo Autor fue añadido Correctamente!",
             "success"
           );
-          history.push("/materiales");
+          history.push("/usuarios");
         },
         (error) => {
           if (error.response.status === 401) {
@@ -114,9 +122,9 @@ export const FormMaterial= (props) => {
         }
       );
   };
-  const enviarActualizar = (material, id) => {
+  const enviarActualizar = (autor, id) => {
     axios
-      .put("http://localhost:8000/api/material/" + id, material, { headers })
+      .put("http://localhost:8000/api/usuario/" + id, autor, { headers })
       .then(
         (response) => {
           if (response.data.res !== "success") {
@@ -125,10 +133,10 @@ export const FormMaterial= (props) => {
           }
           swal(
             "Buen Trabajo!",
-            "El Material fue actualizada Correctamente!",
+            "El Usuario fue actualizado Correctamente!",
             "success"
           );
-          history.push("/materiales");
+          history.push("/usuarios");
         },
         (error) => {
           if (error.response.status === 401) {
@@ -171,7 +179,7 @@ export const FormMaterial= (props) => {
         <div className="container-fluid" >
           <div className="container-flat-form">
             <div className="title-flat-form title-flat-blue">
-              Nuevo Material
+              Nuevo Usuario Asistente
             </div>
 
             <form onSubmit={enviarDatos}>
@@ -180,7 +188,7 @@ export const FormMaterial= (props) => {
                 <MiGroup>
                   <MiInput
                     type="text"
-                    placeholder="Escribe el Material"
+                    placeholder="Escribe el Nombre"
                     required=""
                     pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
                     maxLength="70"
@@ -194,9 +202,54 @@ export const FormMaterial= (props) => {
                     }}
                   />
                   <MibarHigh></MibarHigh>
-                  <label>Material</label>
+                  <label>Nombre</label>
                 </MiGroup>
               </MiColumnaSelect>
+
+
+              <MiColumnaSelect>
+                <MiGroup>
+                  <MiInput
+                    type="email"
+                    placeholder="Escribe su correo"
+                    required=""
+                    maxLength="70"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="formato correo"
+                    id="email"
+                    value={email}
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                    }}
+                  />
+                  <MibarHigh></MibarHigh>
+                  <label>Email</label>
+                </MiGroup>
+              </MiColumnaSelect>
+
+
+              <MiColumnaSelect>
+                <MiGroup>
+                  <MiInput
+                    type="password"
+                    placeholder="Escribe su contraseña"
+                    required=""
+                    maxLength="70"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="solo caracteres"
+                    id="city"
+                    value={password}
+                    onChange={(event) => {
+                      setPassword(event.target.value);
+                    }}
+                  />
+                  <MibarHigh></MibarHigh>
+                  <label>Contraseña</label>
+                </MiGroup>
+              </MiColumnaSelect>
+
 
               <MiBoton><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar  </MiBoton>
             </form>

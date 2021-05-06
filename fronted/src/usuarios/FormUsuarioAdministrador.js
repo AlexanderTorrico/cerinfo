@@ -118,6 +118,15 @@ export const FormUsuarioAdministrador= (props) => {
             history.push("/login");
             return;
           }
+          if (error.response.status === 500) {
+            swal(
+              "ERROR 500!",
+              "NO SE PUDO CONECTAR CON EL SERVIDOR !",
+              "error"
+            );
+            history.push("/usuarios/createAdministrador");
+            return;
+          }
           return error;
         }
       );
@@ -188,7 +197,7 @@ export const FormUsuarioAdministrador= (props) => {
                 <MiGroup>
                   <MiInput
                     type="text"
-                    placeholder="Escribe el Autor"
+                    placeholder="Escribe el Nombre"
                     required=""
                     pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
                     maxLength="70"
@@ -202,7 +211,7 @@ export const FormUsuarioAdministrador= (props) => {
                     }}
                   />
                   <MibarHigh></MibarHigh>
-                  <label>Autor</label>
+                  <label>Nombre</label>
                 </MiGroup>
               </MiColumnaSelect>
 
@@ -210,22 +219,21 @@ export const FormUsuarioAdministrador= (props) => {
               <MiColumnaSelect>
                 <MiGroup>
                   <MiInput
-                    type="text"
-                    placeholder="Escribe su Pais"
+                    type="email"
+                    placeholder="Escribe su correo"
                     required=""
-                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
                     maxLength="70"
                     data-toggle="tooltip"
                     data-placement="top"
-                    title="solo caracteres"
-                    id="country"
-                    value={country}
+                    title="Formato correo"
+                    id="email"
+                    value={email}
                     onChange={(event) => {
-                      setCountry(event.target.value);
+                      setEmail(event.target.value);
                     }}
                   />
                   <MibarHigh></MibarHigh>
-                  <label>Pais</label>
+                  <label>Email</label>
                 </MiGroup>
               </MiColumnaSelect>
 
@@ -233,52 +241,23 @@ export const FormUsuarioAdministrador= (props) => {
               <MiColumnaSelect>
                 <MiGroup>
                   <MiInput
-                    type="text"
-                    placeholder="Escribe su Ciudad"
+                    type="password"
+                    placeholder="Escribe su contraseña"
                     required=""
-                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
                     maxLength="70"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="solo caracteres"
                     id="city"
-                    value={city}
+                    value={password}
                     onChange={(event) => {
-                      setCity(event.target.value);
+                      setPassword(event.target.value);
                     }}
                   />
                   <MibarHigh></MibarHigh>
-                  <label>Ciudad</label>
+                  <label>Contraseña</label>
                 </MiGroup>
               </MiColumnaSelect>
-
-
-              <MiColumnaSelect>
-                <MiGroup>
-                  <MiInput
-                    type="date"
-                    placeholder="Fecha de Nacimiento"
-                    required=""
-                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
-                    maxLength="70"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="solo caracteres"
-                    id="date_birth"
-                    value={date_birth}
-                    onChange={(event) => {
-                      setDate_Birth(event.target.value);
-                    }}
-                  />
-                  <MibarHigh></MibarHigh>
-                  <label>Fecha de Nacimiento</label>
-                </MiGroup>
-              </MiColumnaSelect>
-
-
-
-
-
 
 
               <MiBoton><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar  </MiBoton>

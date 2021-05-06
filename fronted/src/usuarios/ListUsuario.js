@@ -5,7 +5,7 @@ import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 import swal from "sweetalert";
 import { useSelector } from 'react-redux';
-export const ListAutor = (props) => {
+export const ListUsuario = (props) => {
 
  const access_token = localStorage.getItem("access_token");
   if (access_token === null) {
@@ -16,19 +16,19 @@ export const ListAutor = (props) => {
   const headers = {
     Authorization: " Bearer " + access_token,
   };
-  const [listaAutores, setListaAutores] = useState([]);
+  const [listaUsuarios, setListaUsuarios] = useState([]);
 
   useEffect(() => {
-    traerAutores();
+    traerUsuarios();
     //console.log(traerCategorias);
   }, []);
 
-  const traerAutores = () => {
+  const traerUsuarios = () => {
     axios
-      .get("http://localhost:8000/api/autor", { headers })
+      .get("http://localhost:8000/api/usuario", { headers })
       .then((response) => {
         console.log(response.data);
-        setListaAutores(response.data.data);
+        setListaUsuarios(response.data.data);
       })
       .catch((error) => {
         if (error.response.status === 401) {
@@ -37,7 +37,7 @@ export const ListAutor = (props) => {
       });
   };
 
-  const eliminarAutor = (id) => {
+  const eliminarUsuario = (id) => {
     swal({
       title: "Estas Seguro?",
       text: "Una vez eliminado, ¡no podrás recuperar este archivo!",
@@ -47,15 +47,15 @@ export const ListAutor = (props) => {
     }).then(
       (willDelete) => {
         if (willDelete) {
-          axios.delete("http://localhost:8000/api/autor/" + id, {
+          axios.delete("http://localhost:8000/api/usuario/" + id, {
             headers,
           });
-          swal("Poof! El Autor  fue eliminado correctamente!", {
+          swal("Poof! El Usuario  fue eliminado correctamente!", {
             icon: "success",
           });
-          traerAutores();
+          traerUsuarios();
         } else {
-          swal("Ha cancelado la eliminacion del Autor!");
+          swal("Ha cancelado la eliminacion del Usuario!");
         }
       },
       (error) => {
@@ -101,14 +101,14 @@ export const ListAutor = (props) => {
         </div>
 
         <div className="container-fluid">
-          <h2 className="text-center all-tittles">Lista de Autores</h2>
+          <h2 className="text-center all-tittles">Lista de Usuarios</h2>
         </div>
         <div className="container-fluid">
           <Link
             className="nav-link text-center all-tittles"
-            to="/autores/create"
+            to="/usuarios/createAdministrador"
           >
-            Añadir de Autor
+            Añadir de Usuario Administrador
           </Link>
         </div>
 
@@ -117,24 +117,21 @@ export const ListAutor = (props) => {
             <tr className="div-table-row div-table-head">
               <th className="div-table-cell">ID</th>
               <th className="div-table-cell">NOMBRE</th>
-              <th className="div-table-cell">PAIS</th>
-              <th className="div-table-cell">CIUDAD</th>
-              <th className="div-table-cell">FECHA DE NACIMIENTO</th>
+              <th className="div-table-cell">EMAIL</th>
               <th className="div-table-cell">ACTUALIZAR</th>
               <th className="div-table-cell">ELIMINAR</th>
             </tr>
           </thead>
           <tbody>
-            {listaAutores.map((item) => (
+            {listaUsuarios.map((item) => (
               <tr key={"item-" + item.id}>
                 <td className="div-table-cell">{item.id}</td>
                 <td className="div-table-cell">{item.name}</td>
-                <td className="div-table-cell">{item.country}</td>
-                <td className="div-table-cell">{item.city}</td>
-                <td className="div-table-cell">{item.date_birth}</td>
+                <td className="div-table-cell">{item.email}</td>
+
                 <td className="div-table-cell">
                   <Link
-                    to={"/autores/edit/" + item.id}
+                    to={"/usuarios/edit/" + item.id}
                     className="btn btn-primary"
                   >
                     <i className="zmdi zmdi-edit"></i>
@@ -142,7 +139,7 @@ export const ListAutor = (props) => {
                 </td>
                 <td className="div-table-cell">
                   <Button
-                    onClick={() => eliminarAutor(item.id)}
+                    onClick={() => eliminarUsuario(item.id)}
                     variant="danger"
                   >
                     <i className="zmdi zmdi-delete"></i>

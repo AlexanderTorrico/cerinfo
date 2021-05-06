@@ -75,7 +75,7 @@ class UserController extends Controller
             $objUser = User::findOrFail($id);
             $name = $request->name;
             $email = $request->email;
-            $password = bcrypt($request->get('password'));
+            $password = bcrypt($request->json('password'));
             $objUser->name = $name;
             $objUser->email = $email;
             $objUser->password = $password;
