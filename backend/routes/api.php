@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\UserController;
@@ -46,6 +47,22 @@ Route::group(['middleware' => ['auth:api','role:Administrator']], function () {
 Route::resource("gender", GenderController::class);
 //Route::resource("material", MaterialController::class);
 Route::resource("usuario", UserController::class);
+Route::resource("libro", BookController::class);
+
+
+
+
+// SIN PERMISOS INDEX
+Route::get('languageIndex', [LanguageController::class,'languageIndex']);
+Route::get('genderIndex', [GenderController::class,'genderIndex']);
+Route::get('autorIndex', [AuthController::class,'autorIndex']);
+Route::get('materialIndex', [MaterialController::class,'materialIndex']);
+
+
+
+
+
+
 
 Route::get('language', [LanguageController::class,'index']);
 Route::get('language/{id}', [LanguageController::class,'show']);

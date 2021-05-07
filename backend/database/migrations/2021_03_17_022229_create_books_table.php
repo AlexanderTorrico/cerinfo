@@ -20,8 +20,8 @@ class CreateBooksTable extends Migration
             $table->string("sigTop");
             $table->string("dewey");
             $table->string("cuter");
-            $table->boolean("available");
-            $table->boolean("show");
+            $table->integer('available')->comment('0 = Si, 1 = No');
+            $table->integer("show") ->comment('0 = Si, 1 = No');
 
             $table->bigInteger("author_id")->unsigned();
             $table->bigInteger("gender_id")->unsigned();

@@ -22,8 +22,12 @@ import { FormUsuarioAdministrador } from './usuarios/FormUsuarioAdministrador';
 import { FormUsuarioMaster } from './usuarios/FormUsuarioMaster';
 import { FormUsuarioAsistente } from './usuarios/FormUsuarioAsistente';
 import { FormUsuarioEstudiante } from './usuarios/FormUsuarioEstudiante';
+import { ListLibro } from "./libros/ListLibro";
+import { FormLibro } from "./libros/FormLibro";
 import {Header} from './Header';
 import { cerrarSesion as logout, iniciarSesion } from "./actions/userActions";
+
+
 
 
 
@@ -121,6 +125,20 @@ function App() {
           <Route exact path="/usuarios">
             <ListUsuario />
           </Route>
+
+
+          <Route path="/libros/edit/:id" component={FormLibro}></Route>
+          <Route path="/libros/create">
+            <FormLibro />
+          </Route>
+          <Route exact path="/libros">
+            <ListLibro />
+          </Route>
+
+
+
+
+
         </>
       )}
     </BrowserRouter>

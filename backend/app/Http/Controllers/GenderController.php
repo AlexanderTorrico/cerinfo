@@ -31,6 +31,26 @@ class GenderController extends Controller
         }
     }
 
+
+
+
+    public function genderIndex()
+    {
+        try {
+            $listaGenero = Gender::all();
+            return response()->json([
+                "res" => "success",
+                "data" => $listaGenero
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener lista de los Generos"
+            ], 500);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

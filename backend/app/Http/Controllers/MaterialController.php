@@ -30,6 +30,23 @@ class MaterialController extends Controller
         }
     }
 
+    public function materialIndex()
+    {
+        try {
+            $listaMaterial = Material::all();
+            return response()->json([
+                "res" => "success",
+                "data" => $listaMaterial
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener lista de los materiales"
+            ], 500);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -30,6 +30,26 @@ class AuthorController extends Controller
         }
     }
 
+    public function autorIndex()
+    {
+        try {
+            $listaAutor = Author::all();
+            return response()->json([
+                "res" => "success",
+                "data" => $listaAutor
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener lista de los Autores"
+            ], 500);
+        }
+    }
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *

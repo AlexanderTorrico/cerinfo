@@ -30,6 +30,26 @@ class LanguageController extends Controller
         }
     }
 
+    public function languageIndex()
+    {
+        try {
+            $listaLenguage = Language::all();
+            return response()->json([
+                "res" => "success",
+                "data" => $listaLenguage
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error al obtener lista de los Lenguajes"
+            ], 500);
+        }
+    }
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *

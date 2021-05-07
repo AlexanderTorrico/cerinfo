@@ -114,6 +114,16 @@ export const Header = (props) => {
             </Link>
           </NavDropdown>
 
+
+          <NavDropdown title="Lbro" id="libro-dropdown">
+            <Link to="/libros" className="dropdown-item">
+              Lista de Libros
+            </Link>
+            <Link to="/libros/create" className="dropdown-item">
+              Crear Libro
+            </Link>
+          </NavDropdown>
+
           
 
           
