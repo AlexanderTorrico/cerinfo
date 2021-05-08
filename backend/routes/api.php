@@ -55,7 +55,7 @@ Route::resource("libro", BookController::class);
 // SIN PERMISOS INDEX
 Route::get('languageIndex', [LanguageController::class,'languageIndex']);
 Route::get('genderIndex', [GenderController::class,'genderIndex']);
-Route::get('autorIndex', [AuthController::class,'autorIndex']);
+Route::get('autorIndex', [AuthorController::class,'autorIndex']);
 Route::get('materialIndex', [MaterialController::class,'materialIndex']);
 
 

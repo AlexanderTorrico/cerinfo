@@ -179,6 +179,7 @@ export const FormLibro= (props) => {
   const traerAutores = (event) => {
     axios.get("http://localhost:8000/api/autorIndex").then((response) => {
       let respuesta = response.data;
+    console.log(respuesta.respuesta);
       setListaAutores(respuesta.data);
     });
   };

@@ -166,10 +166,10 @@ const showForDisplay = (show) => {
                 <td className="div-table-cell">{item.cuter }</td>
                 <td className="div-table-cell">{availableForDisplay(item.available)}</td>
                 <td className="div-table-cell">{showForDisplay(item.show)}</td>
-                <td className="div-table-cell">{item.author_id }</td>
-                <td className="div-table-cell">{item.gender_id }</td>
-                <td className="div-table-cell">{item.language_id }</td>
-                <td className="div-table-cell">{item.material_id }</td>
+                <td className="div-table-cell">{item.author.name }</td>
+                <td className="div-table-cell">{item.gender.name }</td>
+                <td className="div-table-cell">{item.language.name }</td>
+                <td className="div-table-cell">{item.material.name }</td>
 
                 <td className="div-table-cell">
                   <Link
