@@ -36,6 +36,7 @@ class UserController extends Controller
                     "message" => "Usuario no encontrado"
                 ], 404);
             }
+            $objUser->password = "";
             return response()->json([
                 "res" => "success",
                 "data" => $objUser
@@ -55,8 +56,6 @@ class UserController extends Controller
         $validator = Validator::make($request->json()->all(), [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required'
-
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -78,7 +77,10 @@ class UserController extends Controller
             $password = bcrypt($request->json('password'));
             $objUser->name = $name;
             $objUser->email = $email;
-            $objUser->password = $password;
+            if($objUser->password != ""){
+                $objUser->password = $password;
+            }
+             
             $objUser->save();
             return response()->json([
                 "res" => "success",
