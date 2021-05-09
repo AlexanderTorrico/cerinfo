@@ -92,3 +92,6 @@ Route::get('categoria/{id}', [CategoriesController::class,'show']);
 Route::post('categoria', [CategoriesController::class,'store']);
 Route::put('categoria/{id}', [CategoriesController::class,'update']);
 Route::delete('categoria/{category}', [CategoriesController::class,'destroy']);
+
+
+Route::post('login_client', [ClientController::class,'store']);
