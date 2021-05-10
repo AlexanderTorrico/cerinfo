@@ -77,10 +77,12 @@ class UserController extends Controller
             $password = bcrypt($request->json('password'));
             $objUser->name = $name;
             $objUser->email = $email;
-            if($objUser->password != ""){
+            error_log($request->password);
+            if($request->password != ""){
                 $objUser->password = $password;
+                error_log("Cambio contraseña");
             }
-             
+            
             $objUser->save();
             return response()->json([
                 "res" => "success",
