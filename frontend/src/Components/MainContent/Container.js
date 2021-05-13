@@ -12,6 +12,8 @@ import AreaPage from '../areas/area_index'
 import GenderPage from '../genders/gender_index'
 import MaterialPage from '../materials/material_index'
 
+import LoginEst from '../cliente/login_estudent'
+
 
 //import Modal_Autor from '../Modal/Autor_Modal';
 
@@ -61,6 +63,9 @@ class Container extends Component {
                                     </Route>
                                     <Route path="/material">
                                         <MaterialPage />
+                                    </Route>
+                                    <Route path="/login">
+                                        <LoginEst />
                                     </Route>
                                 </Switch>
                             </Box>
