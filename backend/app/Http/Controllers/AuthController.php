@@ -5,11 +5,26 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function registerAdministrator(Request $request)
     {
+        $validator = Validator::make($request->json()->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                "res" => "error",
+                "message" => $validator->messages()
+            ]);
+        }
+
+        try{
         $objUser = new User();
         $objUser->name = $request->get('name');
         $objUser->email = $request->get('email');
@@ -20,6 +35,13 @@ class AuthController extends Controller
             "res" => "success",
             "data" => $objUser
         ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                "res" => "error",
+                "message" => "Error guardar al nuevo usuario"
+            ], 500);
+        }
 
     }
     public function registerAssistant(Request $request)
