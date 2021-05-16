@@ -1,32 +1,38 @@
 import React, { Component } from "react";
-import {
-  Flex,
-  Center,
-  Spacer,
-  Button,
-} from "@chakra-ui/react";
+import { Flex, Center, Spacer, Button, Box } from "@chakra-ui/react";
 import "./../../Assets/Css/Estilo.css";
 import Toggle from "./Toggle";
 import { useHistory, Redirect } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 export default function Nav() {
   let history = useHistory();
+  const cookies = new Cookies();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("aaaaaaaaa");
     history.push("/login");
     return;
   };
 
   return (
     <React.Fragment>
-      <Flex className="Nav" h="50" w="full" bg="#B0C6D6">
+      <Flex className="Nav" h="50" w="full" bg="#fff">
         <Spacer />
+        <Box
+          mt="3"
+          mr="5"
+          fontWeight="semibold"
+          as="h4"
+          lineHeight="tight"
+          isTruncated
+        >
+          {cookies.get("name")}
+        </Box>
         <Flex>
           <Center>
             <form onClick={handleSubmit}>
-              <Button size="sm" mr="10px" type="submit">
+              <Button size="sm" mr="10px" type="submit" colorScheme="red">
                 Salir
               </Button>
             </form>

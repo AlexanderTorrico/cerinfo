@@ -54,7 +54,7 @@ class LanguagePage extends Component {
     render() {
         return (
             <React.Fragment>
-                <Box bg="white" p="15px">
+                <Box p="15px">
                     <Text className="Title">Configuraciones de lenguaje</Text>
                 </Box>
 

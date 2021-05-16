@@ -10,12 +10,13 @@ import {
 } from '@chakra-ui/react'
 import { URL } from '../settings';
 
+
 const materialUrl = URL + "material/"
 
 class MaterialPage extends Component {
     constructor(props) {
         super(props);
-
+        
         this.state = {
             materials: [],
             langSelected: { id: '', name: '' },
@@ -54,7 +55,7 @@ class MaterialPage extends Component {
     render() {
         return (
             <React.Fragment>
-                <Box bg="white" p="15px">
+                <Box p="15px">
                     <Text className="Title">Configuraciones de Material</Text>
                 </Box>
 

@@ -1,40 +1,42 @@
-
-import './App.css';
-import React from 'react';
-import { ChakraProvider } from "@chakra-ui/react"
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import "./App.css";
+import React from "react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
 
-import SideBar from './Components/SideBar/SideBar';
-import Nav from './Components/SideBar/Nav';
+import SideBar from "./Components/SideBar/SideBar";
+import Nav from "./Components/SideBar/Nav";
 
-import LanguagePage from './Components/languages/language_index.js'
-import AuthorPage from './Components/Form/Autor_Form'
-import CategoriaPage from './Components/Form/Categoria_List'
-import AreaPage from './Components/areas/area_index'
-import GenderPage from './Components/genders/gender_index'
-import MaterialPage from './Components/materials/material_index'
-import Login from './Components/cliente/login_estudent'
+import LanguagePage from "./Components/languages/language_index.js";
+import AuthorPage from "./Components/Form/Autor_List";
+import CategoriaPage from "./Components/Form/Categoria_List";
+import AreaPage from "./Components/areas/area_index";
+import GenderPage from "./Components/genders/gender_index";
+import MaterialPage from "./Components/materials/material_index";
+import Login from "./Components/cliente/login_estudent";
 
-import { session } from './Components/settings';
+import { session } from "./Components/settings";
 
 function App() {
-  
   return (
     <ChakraProvider>
       <Router>
         <Route path="/login">
-          <Login/>
+          <Login />
         </Route>
-      </Router>
-      {session && (
-        <React.Fragment>
 
-          <Flex className="este">
-            <Router>
+        {session && (
+          <React.Fragment>
+            <Flex className="este">
               <SideBar></SideBar>
 
-              <Box className="content" display="flex" flexDirection="column" w="full" h="full">
+              <Box
+                className="content"
+                display="flex"
+                flexDirection="column"
+                w="full"
+                h="full"
+              >
                 <Nav></Nav>
                 <Box className="Main" bg="#E4EFE9" h="full" overflow="auto">
                   <Switch>
@@ -71,14 +73,13 @@ function App() {
                     <Route path="/material">
                       <MaterialPage />
                     </Route>
-
                   </Switch>
                 </Box>
               </Box>
-            </Router>
-          </Flex>
-        </React.Fragment>
-      )}
+            </Flex>
+          </React.Fragment>
+        )}
+      </Router> 
     </ChakraProvider>
   );
 }

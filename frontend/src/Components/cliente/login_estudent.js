@@ -18,6 +18,9 @@ import {
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Cookies from "universal-cookie";
+
+
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -26,6 +29,7 @@ export default function App() {
   let history = useHistory();
   const toast = useToast();
   const toastIdRef = React.useRef();
+  const cookies = new Cookies();
 
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -50,7 +54,14 @@ export default function App() {
         dispatch(iniciarSesion());
         localStorage.setItem("user", response.data.user.id);
         localStorage.setItem("name", response.data.user.name);*/
-        console.log(response);
+        
+        cookies.set("token", response.data.access_token, { path: "/" });
+        cookies.set("id", response.data.user.id, { path: "/" });
+        cookies.set("name", response.data.user.name, { path: "/" });
+
+        console.log(cookies.get("token"));
+        console.log(cookies.get("id"));
+        console.log(cookies.get("name"));
         history.push("/materiales");
       },
       (error) => {
@@ -74,7 +85,7 @@ export default function App() {
       title: "Error de session.",
       description: "Su correo electronico o contraseña son incorreptos, intente nuevamente por favor",
       status: "error",
-      duration: 9000,
+      duration: 5500,
       isClosable: true,
     });
   }
