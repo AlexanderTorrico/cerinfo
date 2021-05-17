@@ -11,6 +11,8 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,9 @@ Route::post('/registerStudent', [AuthController::class, "registerStudent"]);
 //Route::group(['middleware' => ['auth:api','role:Administrator']], function () {
 //    Route::resource("material", MaterialController::class);
 //});
+
+Route::resource("usuario", UserController::class);
+Route::resource("libro", BookController::class);
 
 Route::resource("gender", GenderController::class);
 Route::resource("material", MaterialController::class);

@@ -89,7 +89,7 @@ export default function App() {
   function ToastStatusExample() {
     toastIdRef.current = toast({
       title: "Error de session.",
-      description: "Su correo electronico o contraseña son incorreptos, intente nuevamente por favor",
+      description: "Su correo electronico o contraseña son incorrectos, intente nuevamente por favor",
       status: "error",
       duration: 5500,
       isClosable: true,
