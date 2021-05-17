@@ -14,8 +14,8 @@ import AreaPage from "./Components/areas/area_index";
 import GenderPage from "./Components/genders/gender_index";
 import MaterialPage from "./Components/materials/material_index";
 import Login from "./Components/cliente/login_estudent";
+import {session, estado} from "./Components/settings"
 
-import { session } from "./Components/settings";
 
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
-
-        {session && (
+        
+        {estado && (
           <React.Fragment>
             <Flex className="este">
               <SideBar></SideBar>

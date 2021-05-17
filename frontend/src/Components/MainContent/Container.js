@@ -46,10 +46,10 @@ class Container extends Component {
                                     <Route path="/bloqueos">
                                         <h1>Bloqueos</h1>
                                     </Route>
-                                    <Route path="/language">
+                                    <Route path="/languages">
                                         <LanguagePage />
                                     </Route>
-                                    <Route path="/area">
+                                    <Route path="/areas">
                                         <AreaPage />
                                     </Route>
                                     <Route path="/autor">

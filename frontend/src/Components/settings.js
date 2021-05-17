@@ -1,2 +1,5 @@
+
+
 export const URL = "http://127.0.0.1:8000/api/";
-export let session = true;
+export var estado = true;
+//export let sessiones = true;

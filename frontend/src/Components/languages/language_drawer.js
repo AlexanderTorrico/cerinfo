@@ -43,8 +43,10 @@ class LanguageDrawer extends Component {
   };
 
   closeDrawer = () => {
+    /*
     const openCloseDrawer = this.props.drawerProps;
-    openCloseDrawer("closed", { id: "", name: "", abbreviation: "" });
+    openCloseDrawer("closed", { id: "", name: "", abbreviation: "" });*/
+    alert("sdfghj");
   };
 
   peticionPost = () => {

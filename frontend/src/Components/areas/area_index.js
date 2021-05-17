@@ -7,6 +7,8 @@ import {
     Table, Thead, Tbody, Th, Tr, Td,
     Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverArrow
 } from '@chakra-ui/react'
+import SideBar from "../SideBar/SideBar";
+import Nav from "../SideBar/Nav";
 import { URL } from '../settings';
 
 const areasUrl = URL + "area/"
@@ -54,12 +56,12 @@ class AreaPage extends Component {
         return (
             <React.Fragment>
                 <Box p="15px">
-                    <Text className="Title">Configuracion de áreas</Text>
+                    <Text className="Title">Configuraciones de Area</Text>
                 </Box>
 
                 <SimpleGrid justifyContent="center" >
                     <Box shadow="md" width="100%" borderWidth="1px" borderRadius="lg" className="mainBox" bg="white">
-                        <Button colorScheme="twitter"  position="right" onClick={() => { this.drawerProps('add', null) }}>Agregar área</Button>
+                        <Button colorScheme="twitter" position="right" onClick={() => { this.drawerProps('add', null) }}>Agregar área</Button>
                         <Table variant="striped" colorScheme="twitter" size="lg" spacing="40px">
                             <Thead>
                                 <Tr>
@@ -111,6 +113,7 @@ class AreaPage extends Component {
                 <Drawer isOpen={this.state.drawerMode !== 'closed'}>
                     <AreaDrawer {...this.state} drawerProps={this.drawerProps} areasUrl={areasUrl} />
                 </Drawer>
+
             </React.Fragment>
         )
     }

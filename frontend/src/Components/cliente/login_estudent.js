@@ -19,13 +19,14 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
-
-
+import {estado} from "../settings"
+import "./../../Components/cliente/style.css";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export default function App() {
+  let asr= estado;
   let history = useHistory();
   const toast = useToast();
   const toastIdRef = React.useRef();
@@ -34,6 +35,14 @@ export default function App() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+
+  function disableScroll(){  
+    window.scrollTo(0, 0);
+  }
+  
+  window.addEventListener('scroll', disableScroll);
+  
 
   const handleShowClick = () => setShowPassword(!showPassword);
 
@@ -58,11 +67,8 @@ export default function App() {
         cookies.set("token", response.data.access_token, { path: "/" });
         cookies.set("id", response.data.user.id, { path: "/" });
         cookies.set("name", response.data.user.name, { path: "/" });
-
-        console.log(cookies.get("token"));
-        console.log(cookies.get("id"));
-        console.log(cookies.get("name"));
-        history.push("/materiales");
+        asr = true;
+        history.push("/language");
       },
       (error) => {
         if (error.response.status === 401) {
@@ -92,6 +98,7 @@ export default function App() {
 
   return (
     <Flex
+      className="scrool"
       flexDirection="column"
       width="100wh"
       height="100vh"

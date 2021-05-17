@@ -10,6 +10,8 @@ import {
 } from '@chakra-ui/react'
 import { URL } from '../settings';
 
+
+
 const languagesUrl = URL + "language/"
 
 class LanguagePage extends Component {
@@ -55,12 +57,11 @@ class LanguagePage extends Component {
         return (
             <React.Fragment>
                 <Box p="15px">
-                    <Text className="Title">Configuraciones de lenguaje</Text>
+                    <Text className="Title">Configuraciones de Idioma</Text>
                 </Box>
-
                 <SimpleGrid justifyContent="center" >
                     <Box shadow="md" width="100%" borderWidth="1px" borderRadius="lg" className="mainBox" bg="white">
-                        <Button colorScheme="twitter"  position="right" onClick={() => { this.drawerProps('add', null) }}>Agregar lenguaje</Button>
+                        <Button colorScheme="twitter" position="right" onClick={() => { this.drawerProps('add', null) }}>Agregar lenguaje</Button>
                         <Table variant="striped" colorScheme="twitter" size="lg" spacing="40px">
                             <Thead>
                                 <Tr>
@@ -112,6 +113,7 @@ class LanguagePage extends Component {
                 <Drawer isOpen={this.state.drawerMode !== 'closed'}>
                     <LanguageDrawer {...this.state} drawerProps={this.drawerProps} languagesUrl={languagesUrl} />
                 </Drawer>
+
             </React.Fragment>
         )
     }

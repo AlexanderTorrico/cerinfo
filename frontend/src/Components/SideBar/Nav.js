@@ -3,14 +3,22 @@ import { Flex, Center, Spacer, Button, Box } from "@chakra-ui/react";
 import "./../../Assets/Css/Estilo.css";
 import Toggle from "./Toggle";
 import { useHistory, Redirect } from "react-router-dom";
-import Cookies from "universal-cookie";
+import Cookies from 'universal-cookie';
 
 export default function Nav() {
   let history = useHistory();
   const cookies = new Cookies();
-
+  //const cookies = new Cookies();
+  
+  if(cookies.get("id")===undefined){
+    history.push("/login");
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
+    cookies.remove("id");
+    cookies.remove("name");
+    cookies.remove("token");
+    
     history.push("/login");
     return;
   };
