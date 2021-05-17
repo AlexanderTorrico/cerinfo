@@ -63,6 +63,17 @@ class SideBar extends Component{
                   </Link>
                 </ListItem>
                 <ListItem className="itemDrawer">
+                  <Link to="/usuarios">
+                    <span className="icon">
+                      <DragHandleIcon
+                        className="fa"
+                        aria-hidden="true"
+                      ></DragHandleIcon>
+                    </span>
+                    <span className="tittle">Usuarios</span>
+                  </Link>
+                </ListItem>
+                <ListItem className="itemDrawer">
                   <Accordion allowToggle>
                     <AccordionItem border="0">
                       <h2>

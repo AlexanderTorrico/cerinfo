@@ -14,10 +14,9 @@ import AreaPage from "./Components/areas/area_index";
 import GenderPage from "./Components/genders/gender_index";
 import MaterialPage from "./Components/materials/material_index";
 import Login from "./Components/cliente/login_estudent";
-import {session, estado} from "./Components/settings"
+import {estado} from "./Components/settings"
 import AdminPage from "./Components/users/admin_index.js"
 
-import { session } from "./Components/settings";
 
 function App() {
   return (
