@@ -97,7 +97,7 @@ const showForDisplay = (show) => {
 
   return (
     <>
-      <div className="mt-3 text-center">
+      <div className="mt-4 text-center">
         <div className="container">
           <div className="page-header" xmlns="http://www.w3.org/1999/html">
             <h1 className="all-tittles">
@@ -109,7 +109,7 @@ const showForDisplay = (show) => {
           <div className="row">
             <div className="col-xs-12 col-sm-4 col-md-3">
               <img
-                src={require("../estilos/img/book.png").default}
+                src={require("../estilos/img/doctor.png").default}
                 alt="user"
                 className="img-responsive center-box"
                 style={{ maxWidth: "110px" }}
@@ -135,7 +135,7 @@ const showForDisplay = (show) => {
           </Link>
         </div>
 
-        <Table className="table table-sm">
+        <Table className="table">
           <thead>
             <tr className="div-table-row div-table-head">
               <th className="div-table-cell">ID</th>

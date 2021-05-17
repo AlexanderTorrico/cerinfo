@@ -14,8 +14,11 @@ import {
     MiGroup,
     MiColumnaSelect,
     MibarHigh,
-    MiSelect
+    MiSelect,
+    MiColumnaInput
   } from "../Component";
+
+import {Button,Modal} from "react-bootstrap";
 
 export const FormLibro= (props) => {
 
@@ -29,18 +32,24 @@ export const FormLibro= (props) => {
   };
 
   let { id } = props.match ? props.match.params : { id: 0 };
+
+
   const [title, setTitle] = useState("");
   const [detail, setDetail]= useState("");
   const [sigTop, setSigtop] = useState("");
   const [dewey, setDewey]= useState("");
   const [cuter, setCuter] = useState("");
   const [available, setAvailable]= useState("");
-  const [show, setShow] = useState("");
+  const [show1, setShow1] = useState("");
   const [author_id, setAuthor_id]= useState("");
   const [gender_id , setGender_id]= useState("");
   const [language_id, setLanguage_id] = useState("");
   const [material_id, setMaterial_id]= useState("");
 
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useEffect(() => {
     if (id != 0) {
       cargarLibro(id);
@@ -217,13 +226,166 @@ export const FormLibro= (props) => {
     });
   };
 
-  
-
-
-
+  const [name1, setName1] = useState("");
+  const [country, setCountry]= useState("");
+  const [city, setCity] = useState("");
+  const [date_birth, setDate_Birth]= useState("");
+  const enviarDatosAutor = (e) => {
+    e.preventDefault();
+    const autor = {
+      name1,
+      country,
+      city,
+      date_birth
+    };
+    if (id == 0) {
+      enviarInsertarAutor(autor);
+    } else {
+      enviarActualizarAutor(autor, id);
+    }
+  };
+  const enviarInsertarAutor = (autor) => {
+    axios
+      .post("http://localhost:8000/api/autor/", autor, { headers })
+      .then(
+        (response) => {
+          if (response.data.res !== "success") {
+            swal(
+              "Lo siento 😱!",
+              "Verifique sus datos antes de enviar",
+              "warning"
+            );
+            return;
+          }
+          swal(
+            "Buen Trabajo!",
+            "El nuevo Autor fue añadido Correctamente!",
+            "success"
+          );
+          history.push("/autores");
+        },
+        (error) => {
+          if (error.response.status === 401) {
+            history.push("/login");
+            return;
+          }
+          return error;
+        }
+      );
+  };
+  const enviarActualizarAutor = (autor, id) => {
+    <h1>no daaa</h1>
+  }
   return (
     <>
-    
+      <Modal show={show} onHide={handleClose} animation={false} onSubmit={enviarDatosAutor}>
+        <Modal.Header closeButton>
+          <Modal.Title>Agregar Autor</Modal.Title>
+      
+        </Modal.Header>
+        <br></br>
+        <Modal.Body>
+          <form onSubmit={enviarDatosAutor}>
+            <input id="id" type="hidden" value={id} />
+            <MiColumnaSelect>
+              <MiGroup>
+                <MiInput
+                  type="text"
+                  placeholder="Escribe el Autor"
+                  required=""
+                  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
+                  maxLength="70"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="solo caracteres"
+                  id="name"
+                  value={name1}
+                  onChange={(event) => {
+                    setName1(event.target.value);
+                  }}
+                />
+                <MibarHigh></MibarHigh>
+                <label>Autor</label>
+              </MiGroup>
+            </MiColumnaSelect>
+
+            <MiColumnaSelect>
+              <MiGroup>
+                <MiInput
+                  type="text"
+                  placeholder="Escribe su Pais"
+                  required=""
+                  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
+                  maxLength="70"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="solo caracteres"
+                  id="country"
+                  value={country}
+                  onChange={(event) => {
+                    setCountry(event.target.value);
+                  }}
+                />
+                <MibarHigh></MibarHigh>
+                <label>Pais</label>
+              </MiGroup>
+            </MiColumnaSelect>
+
+            <MiColumnaSelect>
+              <MiGroup>
+                <MiInput
+                  type="text"
+                  placeholder="Escribe su Ciudad"
+                  required=""
+                  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
+                  maxLength="70"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="solo caracteres"
+                  id="city"
+                  value={city}
+                  onChange={(event) => {
+                    setCity(event.target.value);
+                  }}
+                />
+                <MibarHigh></MibarHigh>
+                <label>Ciudad</label>
+              </MiGroup>
+            </MiColumnaSelect>
+
+            <MiColumnaSelect>
+              <MiGroup>
+                <MiInput
+                  type="date"
+                  placeholder="Fecha de Nacimiento"
+                  required=""
+                  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
+                  maxLength="70"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="solo caracteres"
+                  id="date_birth"
+                  value={date_birth}
+                  onChange={(event) => {
+                    setDate_Birth(event.target.value);
+                  }}
+                />
+                <MibarHigh></MibarHigh>
+                <label>Fecha de Nacimiento</label>
+              </MiGroup>
+            </MiColumnaSelect>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cerrar
+          </Button>
+          <Button variant="primary" onClick={handleClose} >
+            Guardar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <div className="mt-3 text-center">
         <div className="container">
           <div className="page-header" xmlns="http://www.w3.org/1999/html">
@@ -236,29 +398,33 @@ export const FormLibro= (props) => {
           <div className="row">
             <div className="col-xs-12 col-sm-4 col-md-3">
               <img
-                src={require("../estilos/img/book.png").default}
+                src={require("../estilos/img/doctor.png").default}
                 alt="user"
                 className="img-responsive center-box"
                 style={{ maxWidth: "110px" }}
               ></img>
             </div>
             <div className="col-xs-12 col-sm-8 col-md-8 text-justify lead">
-              Bienvenido a Biblioteca Virtual Nur , el lugar donde estan los mejores libros,
-               Hoy en dia somos lider nacional en
-              publicaciones de libros.
+              Bienvenido a Biblioteca Virtual Nur , el lugar donde estan los
+              mejores libros, Hoy en dia somos lider nacional en publicaciones
+              de libros.
             </div>
           </div>
         </div>
 
-        <div className="container-fluid" >
+        <div className="container-fluid">
           <div className="container-flat-form">
-            <div className="title-flat-form title-flat-blue">
-              Nuevo Libro
-            </div>
+            <div className="title-flat-form title-flat-blue">Nuevo Libro</div>
 
-            <form onSubmit={enviarDatos}>
+            <form onSubmit={enviarDatos} className="form-padding">
+              <div class="col-xs-12">
+                <legend>
+                  <i class="zmdi zmdi-account-box"></i> &nbsp; Datos básicos
+                </legend>
+                <br></br>
+              </div>
               <input id="id" type="hidden" value={id} />
-              <MiColumnaSelect>
+              <MiColumnaInput>
                 <MiGroup>
                   <MiInput
                     type="text"
@@ -278,10 +444,9 @@ export const FormLibro= (props) => {
                   <MibarHigh></MibarHigh>
                   <label>Libro</label>
                 </MiGroup>
-              </MiColumnaSelect>
+              </MiColumnaInput>
 
-
-              <MiColumnaSelect>
+              <MiColumnaInput>
                 <MiGroup>
                   <MiInput
                     type="text"
@@ -301,10 +466,9 @@ export const FormLibro= (props) => {
                   <MibarHigh></MibarHigh>
                   <label>Detalle</label>
                 </MiGroup>
-              </MiColumnaSelect>
+              </MiColumnaInput>
 
-
-              <MiColumnaSelect>
+              <MiColumnaInput>
                 <MiGroup>
                   <MiInput
                     type="text"
@@ -324,10 +488,9 @@ export const FormLibro= (props) => {
                   <MibarHigh></MibarHigh>
                   <label>SigTop</label>
                 </MiGroup>
-              </MiColumnaSelect>
+              </MiColumnaInput>
 
-
-              <MiColumnaSelect>
+              <MiColumnaInput>
                 <MiGroup>
                   <MiInput
                     type="text"
@@ -347,9 +510,9 @@ export const FormLibro= (props) => {
                   <MibarHigh></MibarHigh>
                   <label>Dewey</label>
                 </MiGroup>
-              </MiColumnaSelect>
+              </MiColumnaInput>
 
-              <MiColumnaSelect>
+              <MiColumnaInput>
                 <MiGroup>
                   <MiInput
                     type="text"
@@ -369,10 +532,16 @@ export const FormLibro= (props) => {
                   <MibarHigh></MibarHigh>
                   <label>Cuter</label>
                 </MiGroup>
-              </MiColumnaSelect>
+              </MiColumnaInput>
 
+              <div class="col-xs-12">
+                <legend>
+                  <i class="zmdi zmdi-account-box"></i> &nbsp; Datos Visuales
+                </legend>
+                <br></br>
+              </div>
 
-              <MiColumnaSelect>
+              <MiColumnaInput>
                 <MiGroup>
                   <span>Disponible</span>
                   <MiSelect
@@ -386,38 +555,40 @@ export const FormLibro= (props) => {
                     }}
                   >
                     <option>Selecciona una sección</option>
-                     <option value="0">Si</option> 
-                     <option value="1">No</option>
-                   
+                    <option value="0">Si</option>
+                    <option value="1">No</option>
                   </MiSelect>
                 </MiGroup>
-              </MiColumnaSelect>
+              </MiColumnaInput>
 
-
-              <MiColumnaSelect>
+              <MiColumnaInput>
                 <MiGroup>
                   <span>Visible</span>
                   <MiSelect
-                    value={show}
+                    value={show1}
                     data-toggle="tooltip"
                     data-placement="top"
                     title="Elige Una Opcion"
                     id="show"
                     onChange={(event) => {
-                      setShow(event.target.value);
+                      setShow1(event.target.value);
                     }}
                   >
                     <option>Selecciona una sección</option>
-                     <option value="0">Si</option> 
-                     <option value="1">No</option>
-                   
+                    <option value="0">Si</option>
+                    <option value="1">No</option>
                   </MiSelect>
                 </MiGroup>
-              </MiColumnaSelect>
+              </MiColumnaInput>
 
+              <div class="col-xs-12">
+                <legend>
+                  <i class="zmdi zmdi-account-box"></i> &nbsp; Datos Avanzados
+                </legend>
+                <br></br>
+              </div>
 
-             
-              <MiColumnaSelect>
+              <MiColumnaInput>
                 <MiGroup>
                   <span>Autor</span>
                   <MiSelect
@@ -438,11 +609,25 @@ export const FormLibro= (props) => {
                     ))}
                   </MiSelect>
                 </MiGroup>
-              </MiColumnaSelect>
+              </MiColumnaInput>
 
+              <MiColumnaInput>
+                <MiGroup>
+                  <span>Añadir Autor</span>
+                  <br></br>
+                  <br></br>
 
+                  <Button
+                    variant="primary"
+                    onClick={handleShow}
+                    className="material-control tooltips-general"
+                  >
+                    <i class="zmdi zmdi-account-add"></i>
+                  </Button>
+                </MiGroup>
+              </MiColumnaInput>
 
-              <MiColumnaSelect>
+              <MiColumnaInput>
                 <MiGroup>
                   <span>Genero</span>
                   <MiSelect
@@ -463,10 +648,25 @@ export const FormLibro= (props) => {
                     ))}
                   </MiSelect>
                 </MiGroup>
-              </MiColumnaSelect>
+              </MiColumnaInput>
 
+              <MiColumnaInput>
+                <MiGroup>
+                  <span>Añadir Genero</span>
+                  <br></br>
+                  <br></br>
 
-              <MiColumnaSelect>
+                  <Button
+                    variant="primary"
+                    onClick={handleShow}
+                    className="material-control tooltips-general"
+                  >
+                    <i class="zmdi zmdi-account-add"></i>
+                  </Button>
+                </MiGroup>
+              </MiColumnaInput>
+
+              <MiColumnaInput>
                 <MiGroup>
                   <span>Lenguaje</span>
                   <MiSelect
@@ -487,10 +687,24 @@ export const FormLibro= (props) => {
                     ))}
                   </MiSelect>
                 </MiGroup>
-              </MiColumnaSelect>
+              </MiColumnaInput>
+              <MiColumnaInput>
+                <MiGroup>
+                  <span>Añadir Lenguaje</span>
+                  <br></br>
+                  <br></br>
 
+                  <Button
+                    variant="primary"
+                    onClick={handleShow}
+                    className="material-control tooltips-general"
+                  >
+                    <i class="zmdi zmdi-account-add"></i>
+                  </Button>
+                </MiGroup>
+              </MiColumnaInput>
 
-              <MiColumnaSelect>
+              <MiColumnaInput>
                 <MiGroup>
                   <span>Material</span>
                   <MiSelect
@@ -511,12 +725,31 @@ export const FormLibro= (props) => {
                     ))}
                   </MiSelect>
                 </MiGroup>
+              </MiColumnaInput>
+
+              <MiColumnaInput>
+                <MiGroup>
+                  <span>Añadir Material</span>
+                  <br></br>
+                  <br></br>
+
+                  <Button
+                    variant="primary"
+                    onClick={handleShow}
+                    className="material-control tooltips-general"
+                  >
+                    <i class="zmdi zmdi-account-add"></i>
+                  </Button>
+                </MiGroup>
+              </MiColumnaInput>
+
+              <MiColumnaSelect>
+                <MiGroup>
+                  <MiBoton>
+                    <i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar{" "}
+                  </MiBoton>
+                </MiGroup>
               </MiColumnaSelect>
-
-
-
-
-              <MiBoton><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar  </MiBoton>
             </form>
           </div>
         </div>
@@ -524,3 +757,4 @@ export const FormLibro= (props) => {
     </>
   );
 };
+

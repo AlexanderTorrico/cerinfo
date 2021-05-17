@@ -4,6 +4,7 @@ import './App.css';
 import { BrowserRouter, Route, Switch,Redirect,useHistory,Link, } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from "react-bootstrap/Container";
 import { Login } from './auth/Login';
 import {ListMaterial} from './materiales/ListMaterial';
 import { FormMaterial } from './materiales/FormMaterial';
@@ -47,7 +48,10 @@ function App() {
   }
 
   return (
+    <>
+     
     <BrowserRouter>
+    
       {redirect && <Redirect to="/login" />}
       {/* Login */}
 
@@ -56,7 +60,13 @@ function App() {
       </Route>
       {sesionIniciada && (
         <>
+        
           <Header></Header>
+
+
+          <Container id="loquesea">
+          <div>
+                <Switch>
 
           <Route path="/materiales/edit/:id" component={FormMaterial}></Route>
           <Route path="/materiales/create">
@@ -135,13 +145,18 @@ function App() {
             <ListLibro />
           </Route>
 
-
+          </Switch>
+          </div>
+      </Container>
 
 
 
         </>
       )}
+      
     </BrowserRouter>
+   
+    </>
   );
 }
 

@@ -22,7 +22,7 @@ export const MiBoton = (props) => {
 export const MiInput = (props) => {
   return (
     <>
-      <input className="tooltips-general material-control" {...props}></input>
+      <input className="material-control tooltips-general" {...props}></input>
     </>
   );
 };
