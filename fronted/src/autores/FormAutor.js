@@ -80,6 +80,8 @@ export const FormAutor= (props) => {
       }
     );
   };
+
+  
   const enviarDatos = (e) => {
     e.preventDefault();
     const autor = {

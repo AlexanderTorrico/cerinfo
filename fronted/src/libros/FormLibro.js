@@ -17,6 +17,8 @@ import {
     MiSelect,
     MiColumnaInput
   } from "../Component";
+  import { createStore, combineReducers } from 'redux'
+  import { reducer as formReducer } from 'redux-form'
 
 import {Button,Modal} from "react-bootstrap";
 
@@ -50,6 +52,23 @@ export const FormLibro= (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
+  const [showGenero, setShowGenero] = useState(false);
+  const handleCloseGenero = () => setShowGenero(false);
+  const handleShowGenero = () => setShowGenero(true);
+
+  const [showLenguaje, setShowLenguaje] = useState(false);
+  const handleCloseLenguaje = () => setShowLenguaje(false);
+  const handleShowLenguaje = () => setShowLenguaje(true);
+
+
+  const [showMaterial, setShowMaterial] = useState(false);
+  const handleCloseMaterial = () => setShowMaterial(false);
+  const handleShowMaterial = () => setShowMaterial(true);
+
+
+
   useEffect(() => {
     if (id != 0) {
       cargarLibro(id);
@@ -181,6 +200,9 @@ export const FormLibro= (props) => {
       );
   };
 
+
+
+
   const [listaAutores, setListaAutores] = useState([]);
   useEffect(() => {
     traerAutores();
@@ -192,6 +214,58 @@ export const FormLibro= (props) => {
       setListaAutores(respuesta.data);
     });
   };
+  const [name, setName1] = useState("");
+  const [country, setCountry]= useState("");
+  const [city, setCity] = useState("");
+  const [date_birth, setDate_Birth]= useState("");
+  const enviarDatosAutor = (e) => {
+    e.preventDefault();
+    const autor = {
+      name,
+      country,
+      city,
+      date_birth
+    };
+    if (id == 0) {
+      enviarInsertarAutor(autor);
+    } else {
+      enviarInsertarAutor(autor);
+    }
+  };
+  const enviarInsertarAutor = (autor) => {
+    axios
+      .post("http://localhost:8000/api/autor/", autor, { headers })
+      .then(
+        (response) => {
+          if (response.data.res !== "success") {
+            swal(
+              "Lo siento a 😱!",
+              "Verifique sus datos antes de enviar",
+              "warning"
+            );
+            return;
+          }
+          swal(
+            "Buen Trabajo!",
+            "El nuevo Autor fue añadido Correctamente!",
+            "success"
+          );
+          history.push("/libros/create");
+          traerAutores();
+        },
+        (error) => {
+          if (error.response.status === 401) {
+            history.push("/login");
+            return;
+          }
+          return error;
+        }
+      );
+  };
+  
+
+
+
 
   const [listaGeneros, setListaGeneros] = useState([]);
   useEffect(() => {
@@ -204,49 +278,21 @@ export const FormLibro= (props) => {
     });
   };
 
-  const [listaLenguajes, setListaLenguajes] = useState([]);
-  useEffect(() => {
-    traerLenguajes();
-  }, []);
-  const traerLenguajes = (event) => {
-    axios.get("http://localhost:8000/api/languageIndex/").then((response) => {
-      let respuesta = response.data;
-      setListaLenguajes(respuesta.data);
-    });
-  };
-
-  const [listaMateriales, setListaMateriales] = useState([]);
-  useEffect(() => {
-    traerMateriales();
-  }, []);
-  const traerMateriales = (event) => {
-    axios.get("http://localhost:8000/api/materialIndex/" ).then((response) => {
-      let respuesta = response.data;
-      setListaMateriales(respuesta.data);
-    });
-  };
-
-  const [name1, setName1] = useState("");
-  const [country, setCountry]= useState("");
-  const [city, setCity] = useState("");
-  const [date_birth, setDate_Birth]= useState("");
-  const enviarDatosAutor = (e) => {
+  
+  const enviarDatosGeneros = (e) => {
     e.preventDefault();
-    const autor = {
-      name1,
-      country,
-      city,
-      date_birth
+    const genero = {
+      name,
     };
     if (id == 0) {
-      enviarInsertarAutor(autor);
+      enviarInsertarGenero(genero);
     } else {
-      enviarActualizarAutor(autor, id);
+      enviarInsertarGenero(genero);
     }
   };
-  const enviarInsertarAutor = (autor) => {
+  const enviarInsertarGenero = (genero) => {
     axios
-      .post("http://localhost:8000/api/autor/", autor, { headers })
+      .post("http://localhost:8000/api/gender/", genero, { headers })
       .then(
         (response) => {
           if (response.data.res !== "success") {
@@ -259,10 +305,11 @@ export const FormLibro= (props) => {
           }
           swal(
             "Buen Trabajo!",
-            "El nuevo Autor fue añadido Correctamente!",
+            "Su nueva Material fue añadido Correctamente!",
             "success"
           );
-          history.push("/autores");
+          history.push("/libros/create");
+          traerGeneros();
         },
         (error) => {
           if (error.response.status === 401) {
@@ -273,15 +320,133 @@ export const FormLibro= (props) => {
         }
       );
   };
-  const enviarActualizarAutor = (autor, id) => {
-    <h1>no daaa</h1>
-  }
+
+
+
+  const [abbreviation, setAbbreviation]= useState("");
+  const [listaLenguajes, setListaLenguajes] = useState([]);
+  useEffect(() => {
+    traerLenguajes();
+  }, []);
+  const traerLenguajes = (event) => {
+    axios.get("http://localhost:8000/api/languageIndex/").then((response) => {
+      let respuesta = response.data;
+      setListaLenguajes(respuesta.data);
+    });
+  };
+  const enviarDatosLenguaje = (e) => {
+    e.preventDefault();
+    const lenguaje = {
+      name,
+      abbreviation
+    };
+    if (id == 0) {
+      enviarInsertarLenguaje(lenguaje);
+    } else {
+      enviarInsertarLenguaje(lenguaje);
+    }
+  };
+  const enviarInsertarLenguaje = (lenguaje) => {
+    axios
+      .post("http://localhost:8000/api/language/", lenguaje, { headers })
+      .then(
+        (response) => {
+          if (response.data.res !== "success") {
+            swal(
+              "Lo siento 😱!",
+              "Verifique sus datos antes de enviar",
+              "warning"
+            );
+            return;
+          }
+          swal(
+            "Buen Trabajo!",
+            "El nuevo Lenguaje fue añadido Correctamente!",
+            "success"
+          );
+          history.push("/libros/create");
+          traerLenguajes();
+        },
+        (error) => {
+          if (error.response.status === 401) {
+            history.push("/login");
+            return;
+          }
+          return error;
+        }
+      );
+  };
+
+
+
+
+
+
+  const [listaMateriales, setListaMateriales] = useState([]);
+  useEffect(() => {
+    traerMateriales();
+  }, []);
+  const traerMateriales = (event) => {
+    axios.get("http://localhost:8000/api/materialIndex/" ).then((response) => {
+      let respuesta = response.data;
+      setListaMateriales(respuesta.data);
+    });
+  };
+  const enviarDatosMaterial = (e) => {
+    e.preventDefault();
+    const material = {
+      name,
+    };
+    if (id == 0) {
+      enviarInsertarMaterial(material);
+    } else {
+      enviarInsertarMaterial(material);
+    }
+  };
+  const enviarInsertarMaterial = (material) => {
+    axios
+      .post("http://localhost:8000/api/material/", material, { headers })
+      .then(
+        (response) => {
+          if (response.data.res !== "success") {
+            swal(
+              "Lo siento 😱!",
+              "Verifique sus datos antes de enviar",
+              "warning"
+            );
+            return;
+          }
+          swal(
+            "Buen Trabajo!",
+            "Su nueva Material fue añadido Correctamente!",
+            "success"
+          );
+          history.push("/libros/create");
+          traerMateriales();
+        },
+        (error) => {
+          if (error.response.status === 401) {
+            history.push("/login");
+            return;
+          }
+          return error;
+        }
+      );
+  };
+ 
+
+
+ 
   return (
     <>
-      <Modal show={show} onHide={handleClose} animation={false} onSubmit={enviarDatosAutor}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        animation={false}
+        onSubmit={enviarDatosAutor}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Agregar Autor</Modal.Title>
-      
         </Modal.Header>
         <br></br>
         <Modal.Body>
@@ -299,7 +464,7 @@ export const FormLibro= (props) => {
                   data-placement="top"
                   title="solo caracteres"
                   id="name"
-                  value={name1}
+                  value={name}
                   onChange={(event) => {
                     setName1(event.target.value);
                   }}
@@ -380,7 +545,167 @@ export const FormLibro= (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Cerrar
           </Button>
-          <Button variant="primary" onClick={handleClose} >
+          <Button variant="primary" onClick={enviarDatosAutor}>
+            Guardar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={showGenero}
+        onHide={handleCloseGenero}
+        animation={false}
+        onSubmit={enviarDatosGeneros}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Agregar Genero</Modal.Title>
+        </Modal.Header>
+        <br></br>
+        <Modal.Body>
+          <form onSubmit={enviarDatosGeneros}>
+            <input id="id" type="hidden" value={id} />
+            <MiColumnaSelect>
+              <MiGroup>
+                <MiInput
+                  type="text"
+                  placeholder="Escribe el Genero"
+                  required=""
+                  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
+                  maxLength="70"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="solo caracteres"
+                  id="name"
+                  value={name}
+                  onChange={(event) => {
+                    setName1(event.target.value);
+                  }}
+                />
+                <MibarHigh></MibarHigh>
+                <label>Genero</label>
+              </MiGroup>
+            </MiColumnaSelect>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseGenero}>
+            Cerrar
+          </Button>
+          <Button variant="primary" onClick={enviarDatosGeneros}>
+            Guardar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={showLenguaje}
+        onHide={handleCloseLenguaje}
+        animation={false}
+        onSubmit={enviarDatosLenguaje}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Agregar Lenguaje</Modal.Title>
+        </Modal.Header>
+        <br></br>
+        <Modal.Body>
+          <form onSubmit={enviarDatosLenguaje}>
+            <input id="id" type="hidden" value={id} />
+            <MiColumnaSelect>
+              <MiGroup>
+                <MiInput
+                  type="text"
+                  placeholder="Escribe el Lenguaje"
+                  required=""
+                  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
+                  maxLength="70"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="solo caracteres"
+                  id="name"
+                  value={name}
+                  onChange={(event) => {
+                    setName1(event.target.value);
+                  }}
+                />
+                <MibarHigh></MibarHigh>
+                <label>Lenguaje</label>
+              </MiGroup>
+            </MiColumnaSelect>
+
+            <MiColumnaSelect>
+              <MiGroup>
+                <MiInput
+                  type="text"
+                  placeholder="Escribe la Abrevacion"
+                  required=""
+                  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
+                  maxLength="70"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="solo caracteres"
+                  id="abbreviation"
+                  value={abbreviation}
+                  onChange={(event) => {
+                    setAbbreviation(event.target.value);
+                  }}
+                />
+                <MibarHigh></MibarHigh>
+                <label>abreviación</label>
+              </MiGroup>
+            </MiColumnaSelect>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseLenguaje}>
+            Cerrar
+          </Button>
+          <Button variant="primary" onClick={enviarDatosLenguaje}>
+            Guardar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={showMaterial}
+        onHide={handleCloseMaterial}
+        animation={false}
+        onSubmit={enviarDatosMaterial}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Agregar Material</Modal.Title>
+        </Modal.Header>
+        <br></br>
+        <Modal.Body>
+          <form onSubmit={enviarDatosMaterial}>
+            <input id="id" type="hidden" value={id} />
+            <MiColumnaSelect>
+              <MiGroup>
+                <MiInput
+                  type="text"
+                  placeholder="Escribe el Material"
+                  required=""
+                  pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
+                  maxLength="70"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="solo caracteres"
+                  id="name"
+                  value={name}
+                  onChange={(event) => {
+                    setName1(event.target.value);
+                  }}
+                />
+                <MibarHigh></MibarHigh>
+                <label>Material</label>
+              </MiGroup>
+            </MiColumnaSelect>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseMaterial}>
+            Cerrar
+          </Button>
+          <Button variant="primary" onClick={enviarDatosMaterial}>
             Guardar
           </Button>
         </Modal.Footer>
@@ -430,7 +755,6 @@ export const FormLibro= (props) => {
                     type="text"
                     placeholder="Escribe el titulo"
                     required=""
-                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
                     maxLength="70"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -452,7 +776,6 @@ export const FormLibro= (props) => {
                     type="text"
                     placeholder="Escribe el detalle"
                     required=""
-                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
                     maxLength="70"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -474,7 +797,6 @@ export const FormLibro= (props) => {
                     type="text"
                     placeholder="Escribe su SigTop"
                     required=""
-                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
                     maxLength="70"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -496,7 +818,6 @@ export const FormLibro= (props) => {
                     type="text"
                     placeholder="Escriba su Dewey"
                     required=""
-                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
                     maxLength="70"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -518,7 +839,6 @@ export const FormLibro= (props) => {
                     type="text"
                     placeholder="Escriba su Cuter"
                     required=""
-                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}"
                     maxLength="70"
                     data-toggle="tooltip"
                     data-placement="top"
@@ -658,7 +978,7 @@ export const FormLibro= (props) => {
 
                   <Button
                     variant="primary"
-                    onClick={handleShow}
+                    onClick={handleShowGenero}
                     className="material-control tooltips-general"
                   >
                     <i class="zmdi zmdi-account-add"></i>
@@ -696,7 +1016,7 @@ export const FormLibro= (props) => {
 
                   <Button
                     variant="primary"
-                    onClick={handleShow}
+                    onClick={handleShowLenguaje}
                     className="material-control tooltips-general"
                   >
                     <i class="zmdi zmdi-account-add"></i>
@@ -735,7 +1055,7 @@ export const FormLibro= (props) => {
 
                   <Button
                     variant="primary"
-                    onClick={handleShow}
+                    onClick={handleShowMaterial}
                     className="material-control tooltips-general"
                   >
                     <i class="zmdi zmdi-account-add"></i>
