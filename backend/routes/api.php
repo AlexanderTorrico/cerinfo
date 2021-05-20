@@ -13,6 +13,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ use App\Http\Controllers\CategoriesController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('login_client', [ClientController::class,'store']);
 Route::post('/login', [AuthController::class, "login"])->name('login');
 Route::post('/registerAdministrator', [AuthController::class, "registerAdministrator"]);
 Route::post('/registerMaster', [AuthController::class, "registerMaster"]);
