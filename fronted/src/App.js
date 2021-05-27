@@ -27,6 +27,7 @@ import { ListLibro } from "./libros/ListLibro";
 import { FormLibro } from "./libros/FormLibro";
 import {Header} from './Header';
 import { cerrarSesion as logout, iniciarSesion } from "./actions/userActions";
+import { ListPrestamo } from "./prestamos/ListPrestamo";
 
 
 
@@ -134,6 +135,10 @@ function App() {
           </Route>
           <Route exact path="/usuarios">
             <ListUsuario />
+          </Route>
+
+          <Route path="/prestamos">
+            <ListPrestamo />
           </Route>
 
 

@@ -34,6 +34,12 @@ export const Header = (props) => {
           Biblioteca Virtual
       </Link>
 
+        <NavDropdown title="Prestamos" id="material-dropdown">
+          <Link to="/prestamos" className="dropdown-item">
+            Prestamos
+            </Link>
+        </NavDropdown>
+
         <NavDropdown title="Material" id="material-dropdown">
           <Link to="/materiales" className="dropdown-item">
             Lista de Material
